@@ -1,2 +1,9 @@
 # fdf
-42 Cursus - FdF: ...
+
+## Info
+
+...
+
+- Status: on development
+- Result: n/a
+- Observations: n/a
