@@ -12,7 +12,9 @@
 
 #include <fdf.h>
 #include <libft/ft_fd.h>
+#include <libft/ft_char.h>
 #include <libft/ft_str.h>
+#include <libft/ft_nbr.h>
 #include <unistd.h>
 #include <fcntl.h>
 
@@ -78,10 +80,30 @@ static void	parse_file(t_global *tab, char *file)
 	free(parsed_map);
 }*/
 
+static void	char_tolower(char *c)
+{
+	*c = ft_tolower(*c);
+}
+
+static int	get_color(char *s)
+{
+	while (*s && (ft_isdigit(*s) || *s == '-' || *s == '+' || *s == ','))
+		s++;
+	if (*s && *s == 'x')
+	{
+		ft_striter(s + 1, char_tolower);
+		return (ft_atoi_base(s + 1, LHEX));
+	}
+	return (0);
+}
+
 static void	fill_map(t_map *map, char *file)
 {
+	int		x;
+	int		y;
 	int		fd;
 	char	*line;
+	char	**split;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -89,14 +111,25 @@ static void	fill_map(t_map *map, char *file)
 		free_map(map);
 		perror_exit(file);
 	}
-	line = ft_get_next_line(fd);
-	while (line)
+	y = -1;
+	while (++y < map->h)
 	{
-		//TODO parse map
-		free(line);
 		line = ft_get_next_line(fd);
+		split = ft_split(line, ' ');
+		if (!split)
+		{
+			free_map(map);
+			err_exit("Error", "memory allocation failed");
+		}
+		x = -1;
+		while (++x < map->w)
+		{
+			map->mesh[y][x] = ft_atoi(split[x]);
+			map->clrs[y][x] = get_color(split[x]);
+		}
+		free_split(split);
+		free(line);
 	}
-	free(line);
 	close(fd);
 }
 

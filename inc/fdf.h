@@ -13,7 +13,8 @@
 #ifndef FDF_H
 # define FDF_H
 
-# define BUFFER_SIZE = 10
+# define BUFFER_SIZE 10
+# define LHEX "0123456789abcdef"
 
 // structs
 typedef struct s_map
