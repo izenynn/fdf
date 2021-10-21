@@ -38,7 +38,7 @@ LIB_PATH = lib
 LIBFT_DIR = $(LIB_PATH)/libft
 
 # SOURCES
-SRC_FILES =		main.c		utils.c		tab_utils.c			\
+SRC_FILES =		main.c		utils.c		map_utils.c			\
 				handle_args.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))

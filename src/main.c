@@ -11,18 +11,16 @@
 /* ************************************************************************** */
 
 #include <fdf.h>
-#include <libft/ft_fd.h>
 #include <unistd.h>
 #include <stdlib.h>
-
-// TODO check norminette in libft (i added ft_convert_base from home, so maybe norminette does not like it)
+#include <libft/ft_printf.h>
 
 int	main(int ac, char **av)
 {
-	t_global *tab;
+	t_map *map;
 
-	tab = initialise_tab();
-	handle_args(tab, ac, av);
-	free_tab(tab);
+	map = NULL;
+	handle_args(&map, ac, av);
+	free_map(map);
 	return (0);
 }

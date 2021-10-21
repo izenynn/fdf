@@ -20,19 +20,20 @@ typedef struct s_map
 {
 	int	w;
 	int	h;
-	int	**map;
-	int	**colors;
+	int	**mesh;
+	int	**clrs;
 }	t_map;
 
 // utils.c
-void		errexit(const char *str);
+void		err_exit(const char *err, const char *msg);
+void		perror_exit(const char *str);
 void		free_split(char **split);
 
 // tab_utils.c
-void		free_tab(t_global *tab);
-t_global	*initialise_tab();
+void		free_map(t_map *tab);
+t_map		*initialise_map(char *file);
 
 // parse_map.c
-void	handle_args(t_global *tab, int ac, char **av);
+void	handle_args(t_map **tab, int ac, char **av);
 
 #endif

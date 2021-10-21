@@ -15,10 +15,17 @@
 #include <errno.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-void	errexit(const char *str)
+void	err_exit(const char *err, const char *msg)
 {
-	ft_dprintf(STDERR_FILENO, "%s: %s\n", str, strerror(errno));
+	ft_dprintf(STDERR_FILENO, "%s: %s\n", err, msg);
+	exit(EXIT_FAILURE);
+}
+
+void	perror_exit(const char *str)
+{
+	perror(str);
 	exit(EXIT_FAILURE);
 }
 
