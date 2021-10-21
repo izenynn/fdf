@@ -81,7 +81,7 @@ static void	parse_file(t_global *tab, char *file)
 static void	fill_map(t_map *map, char *file)
 {
 	int		fd;
-	//char	*line;
+	char	*line;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -89,6 +89,15 @@ static void	fill_map(t_map *map, char *file)
 		free_map(map);
 		perror_exit(file);
 	}
+	line = ft_get_next_line(fd);
+	while (line)
+	{
+		//TODO parse map
+		free(line);
+		line = ft_get_next_line(fd);
+	}
+	free(line);
+	close(fd);
 }
 
 static void	alloc_map(t_map *map)
