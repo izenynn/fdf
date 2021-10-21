@@ -12,6 +12,28 @@
 
 #include <fdf.h>
 #include <libft/ft_mem.h>
+#include <libft/ft_printf.h>
+#include <stdlib.h>
+
+void	free_tab(t_global *tab)
+{
+	int	i;
+
+	if (tab->tmap->map)
+	{
+		i = -1;
+		while (++i < tab->tmap->h)
+		{
+			if (tab->tmap->map[i])
+				free(tab->tmap->map[i]);
+		}
+		free(tab->tmap->map);
+	}
+	if (tab->tmap)
+		free(tab->tmap);
+	if (tab)
+		free(tab);
+}
 
 t_global	*initialise_tab()
 {

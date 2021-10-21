@@ -24,15 +24,15 @@ typedef struct s_map
 	int	**colors;
 }	t_map;
 
-typedef struct s_global
-{
-	t_map	*tmap;
-}	t_global;
+// utils.c
+void		errexit(const char *str);
+void		free_split(char **split);
 
 // tab_utils.c
+void		free_tab(t_global *tab);
 t_global	*initialise_tab();
 
 // parse_map.c
-t_map	*handle_args(int ac, char **av);
+void	handle_args(t_global *tab, int ac, char **av);
 
 #endif

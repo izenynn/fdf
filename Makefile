@@ -18,7 +18,7 @@ MAKE = make
 # COMPILER
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 
 CFLAGS += -I ./$(LIBFT_DIR)/inc -I ./inc
 
@@ -38,7 +38,8 @@ LIB_PATH = lib
 LIBFT_DIR = $(LIB_PATH)/libft
 
 # SOURCES
-SRC_FILES =		main.c		tab_utils.c		handle_args.c
+SRC_FILES =		main.c		utils.c		tab_utils.c			\
+				handle_args.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 
