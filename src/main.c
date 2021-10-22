@@ -18,7 +18,7 @@
 #include <stdio.h>
 
 // TESTS
-/*static void	print_map(t_map *map)
+static void	print_map(t_map *map)
 {
 		printf("========== MESH ==========\n");
 	for (int i = 0; i < map->h; i++) {
@@ -34,7 +34,7 @@
 		}
 		printf("\n");
 	}
-}*/
+}
 //
 
 int	main(int ac, char **av)
@@ -43,6 +43,9 @@ int	main(int ac, char **av)
 
 	map = NULL;
 	handle_args(&map, ac, av);
+	//
+	print_map(map);
+	//
 	free_map(map);
 	return (0);
 }
