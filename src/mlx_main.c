@@ -17,12 +17,15 @@
 int	mlx_main(t_map *map)
 {
 	void	*mlx;
+	t_img	*img;
+
 	void	*mlx_win;
-	void	*img;
 
 	mlx = mlx_init();
-	img = mlx_new_image(mlx, 1920, 1080);
+	img = (t_img *)malloc(sizeof(t_img));
+	img->img = mlx_new_image(mlx, 1920, 1080);
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "fdf");
 	mlx_loop(mlx);
+	free(img);
 	return (EXIT_SUCCESS);
 }

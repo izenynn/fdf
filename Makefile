@@ -87,8 +87,6 @@ all: $(NAME) $(CHECKER_NAME)
 $(NAME): $(LIBFT) $(LMLX) $(OBJ)
 	$(CC) $^ -o $@ $(CFLAGS) $(LDFLAGS) $(LDLIBS)
 
-#TODO Minilibx
-
 $(LIBFT):
 	$(MAKE) all -sC $(LIBFT_DIR)
 

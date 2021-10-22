@@ -25,6 +25,16 @@ typedef struct s_map
 	int	**clrs;
 }	t_map;
 
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_l;
+	int		endian;
+}	t_img;
+
+
 // utils.c
 void		err_exit(const char *err, const char *msg);
 void		perror_exit(const char *str);
