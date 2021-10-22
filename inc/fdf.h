@@ -32,6 +32,7 @@ void		free_split(char **split);
 
 // tab_utils.c
 void		free_map(t_map *tab);
+void		alloc_map(t_map *map);
 t_map		*initialise_map(char *file);
 
 // parse_map.c

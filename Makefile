@@ -12,7 +12,11 @@ NAME = fdf
 
 LIBFT_NAME = libft.a
 
-LMLX_NAME = libmlx.dylib
+########## MAC OS sierra ##########
+LMLX_NAME = libmlx.a
+
+########## MAC OS mojave ##########
+#LMLX_NAME = libmlx.dylib
 
 # MAKE
 MAKE = make
@@ -20,7 +24,11 @@ MAKE = make
 # COMPILER
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+#CFLAGS = -Wall -Wextra -Werror
+
+#CFLAGS += -fsanitize=address -g3
+
+CFLAGS += -framework OpenGL -framework AppKit
 
 CFLAGS += -I ./$(LIBFT_DIR)/inc -I ./$(LMLX_DIR) -I ./inc
 
@@ -30,7 +38,7 @@ LDLIBS = -lft -lmlx
 
 LIBFT = $(LIBFT_DIR)/$(LIBFT_NAME)
 
-LMLX = $(LIBFT_DIR)/$(LMLX_NAME)
+LMLX = $(LMLX_DIR)/$(LMLX_NAME)
 
 # PATHS
 SRC_PATH = src
@@ -41,9 +49,14 @@ LIB_PATH = lib
 
 LIBFT_DIR = $(LIB_PATH)/libft
 
-#MLX_DIR = $(MLX_PATH)/minilibx_macos_sierra
-MLX_DIR = $(MLX_PATH)/minilibx_macos_mojave
-#MLX_DIR = $(MLX_PATH)/minilibx_linux
+########## MAC OS sierra ##########
+LMLX_DIR = $(LIB_PATH)/mlx_macos_sierra
+
+########## MAC OS mojave ##########
+#LMLX_DIR = $(LIB_PATH)/mlx_macos_mojave
+
+########## Linux         ##########
+#LMLX_DIR = $(LIB_PATH)/minilibx_linux
 
 # SOURCES
 SRC_FILES =		main.c		utils.c		map_utils.c			\
@@ -59,13 +72,16 @@ OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_FILES))
 
 all: $(NAME) $(CHECKER_NAME)
 
-$(NAME): $(LIBFT) $(OBJ)
+$(NAME): $(LIBFT) $(LMLX) $(OBJ)
 	$(CC) $^ -o $@ $(CFLAGS) $(LDFLAGS) $(LDLIBS)
 
 #TODO Minilibx
 
 $(LIBFT):
 	$(MAKE) all -sC $(LIBFT_DIR)
+
+$(LMLX):
+	$(MAKE) all -sC $(LMLX_DIR) 2> /dev/null
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -75,6 +91,7 @@ $(OBJ_PATH):
 
 clean:
 	$(MAKE) clean -sC $(LIBFT_DIR)
+	$(MAKE) clean -sC $(LMLX_DIR)
 	rm -rf $(OBJ_PATH)
 
 fclean: clean

@@ -97,20 +97,13 @@ static int	get_color(char *s)
 	return (0);
 }
 
-static void	fill_map(t_map *map, char *file)
+static void	fill_map(t_map *map, int fd)
 {
 	int		x;
 	int		y;
-	int		fd;
 	char	*line;
 	char	**split;
 
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-	{
-		free_map(map);
-		perror_exit(file);
-	}
 	y = -1;
 	while (++y < map->h)
 	{
@@ -130,31 +123,20 @@ static void	fill_map(t_map *map, char *file)
 		free_split(split);
 		free(line);
 	}
-	close(fd);
 }
 
-static void	alloc_map(t_map *map)
+static void	parse_file(t_map *map, char *file)
 {
-	int	i;
+	int		fd;
 
-	map->mesh = (int **)malloc(sizeof(int *) * map->h);
-	map->clrs = (int **)malloc(sizeof(int *) * map->h);
-	if (!map->mesh || !map->clrs)
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
 	{
 		free_map(map);
-		err_exit("Error", "memory allocation failed");
+		perror_exit(file);
 	}
-	i = -1;
-	while (++i < map->h)
-	{
-		map->mesh[i] = (int *)malloc(sizeof(int) * map->w);
-		map->clrs[i] = (int *)malloc(sizeof(int) * map->w);
-		if (!map->mesh[i] || !map->clrs[i])
-		{
-			free_map(map);
-			err_exit("Error", "memory allocation failed");
-		}
-	}
+	fill_map(map, fd);
+	close(fd);
 }
 
 void	handle_args(t_map **map, int ac, char **av)
@@ -166,5 +148,5 @@ void	handle_args(t_map **map, int ac, char **av)
 	file = av[1];
 	*map = initialise_map(file);
 	alloc_map(*map);
-	fill_map(*map, file);
+	parse_file(*map, file);
 }
