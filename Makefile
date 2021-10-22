@@ -12,6 +12,8 @@ NAME = fdf
 
 LIBFT_NAME = libft.a
 
+LMLX_NAME = libmlx.dylib
+
 # MAKE
 MAKE = make
 
@@ -20,13 +22,15 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 
-CFLAGS += -I ./$(LIBFT_DIR)/inc -I ./inc
+CFLAGS += -I ./$(LIBFT_DIR)/inc -I ./$(LMLX_DIR) -I ./inc
 
-LDFLAGS = -L $(LIBFT_DIR)
+LDFLAGS = -L $(LIBFT_DIR) -L $(LMLX_DIR)
 
-LDLIBS = -lft
+LDLIBS = -lft -lmlx
 
 LIBFT = $(LIBFT_DIR)/$(LIBFT_NAME)
+
+LMLX = $(LIBFT_DIR)/$(LMLX_NAME)
 
 # PATHS
 SRC_PATH = src
@@ -36,6 +40,10 @@ LIB_PATH = lib
 # LIBS DIR
 
 LIBFT_DIR = $(LIB_PATH)/libft
+
+#MLX_DIR = $(MLX_PATH)/minilibx_macos_sierra
+MLX_DIR = $(MLX_PATH)/minilibx_macos_mojave
+#MLX_DIR = $(MLX_PATH)/minilibx_linux
 
 # SOURCES
 SRC_FILES =		main.c		utils.c		tab_utils.c			\
