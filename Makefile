@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/10/22 09:32:32 by dpoveda-          #+#    #+#              #
+#    Updated: 2021/10/22 09:32:33 by dpoveda-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # COLORS
 NOCOL=\033[0m
 RED=\033[1;31m
@@ -59,8 +71,8 @@ LMLX_DIR = $(LIB_PATH)/mlx_macos_sierra
 #LMLX_DIR = $(LIB_PATH)/minilibx_linux
 
 # SOURCES
-SRC_FILES =		main.c		utils.c		map_utils.c			\
-				handle_args.c
+SRC_FILES =		main.c			utils.c			map_utils.c			\
+				handle_args.c	mlx_main.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 

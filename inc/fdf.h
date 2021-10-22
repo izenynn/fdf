@@ -36,6 +36,9 @@ void		alloc_map(t_map *map);
 t_map		*initialise_map(char *file);
 
 // parse_map.c
-void	handle_args(t_map **tab, int ac, char **av);
+void	handle_args(t_map **map, int ac, char **av);
+
+// mlx_main.c
+int		mlx_main(t_map *map);
 
 #endif

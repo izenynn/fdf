@@ -104,14 +104,9 @@ t_map	*initialise_map(char *file)
 	map->w = cnt_nbrs(map, line);
 	while (line)
 	{
-		if (cnt_nbrs(map, line) != map->w && map->w != 0)
-		{
-			free_map(map);
-			err_exit(file, "Invalid map");
-		}
+		map->h++;
 		free(line);
 		line = ft_get_next_line(fd);
-		map->h++;
 	}
 	free(line);
 	return (map);
