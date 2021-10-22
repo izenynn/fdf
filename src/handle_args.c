@@ -11,17 +11,14 @@
 /* ************************************************************************** */
 
 #include <fdf.h>
-#include <libft/ft_printf.h>
 #include <libft/ft_fd.h>
+#include <libft/ft_char.h>
 #include <libft/ft_str.h>
-#include <libft/ft_mem.h>
+#include <libft/ft_nbr.h>
 #include <unistd.h>
-#include <stdlib.h>
 #include <fcntl.h>
-#include <string.h>
-#include <errno.h>
 
-static void	fill_map(t_global *tab, char *parsed_map)
+/*static void	fill_map(t_global *tab, char *parsed_map)
 {
 	return ;
 }
@@ -81,14 +78,93 @@ static void	parse_file(t_global *tab, char *file)
 	close(fd);
 	create_map(tab, parsed_map);
 	free(parsed_map);
+}*/
+
+static void	char_tolower(char *c)
+{
+	*c = ft_tolower(*c);
 }
 
-void	handle_args(t_global *tab, int ac, char **av)
+static int	get_color(char *s)
 {
-	if (ac != 2)
+	while (*s && (ft_isdigit(*s) || *s == '-' || *s == '+' || *s == ','))
+		s++;
+	if (*s && *s == 'x')
 	{
-		ft_dprintf(STDERR_FILENO, "Invalid arguments\n");
-		exit(EXIT_FAILURE);
+		ft_striter(s + 1, char_tolower);
+		return (ft_atoi_base(s + 1, LHEX));
 	}
-	parse_file(tab, av[1]);
+	return (0);
+}
+
+static void	fill_map(t_map *map, char *file)
+{
+	int		x;
+	int		y;
+	int		fd;
+	char	*line;
+	char	**split;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+	{
+		free_map(map);
+		perror_exit(file);
+	}
+	y = -1;
+	while (++y < map->h)
+	{
+		line = ft_get_next_line(fd);
+		split = ft_split(line, ' ');
+		if (!split)
+		{
+			free_map(map);
+			err_exit("Error", "memory allocation failed");
+		}
+		x = -1;
+		while (++x < map->w)
+		{
+			map->mesh[y][x] = ft_atoi(split[x]);
+			map->clrs[y][x] = get_color(split[x]);
+		}
+		free_split(split);
+		free(line);
+	}
+	close(fd);
+}
+
+static void	alloc_map(t_map *map)
+{
+	int	i;
+
+	map->mesh = (int **)malloc(sizeof(int *) * map->h);
+	map->clrs = (int **)malloc(sizeof(int *) * map->h);
+	if (!map->mesh || !map->clrs)
+	{
+		free_map(map);
+		err_exit("Error", "memory allocation failed");
+	}
+	i = -1;
+	while (++i < map->h)
+	{
+		map->mesh[i] = (int *)malloc(sizeof(int) * map->w);
+		map->clrs[i] = (int *)malloc(sizeof(int) * map->w);
+		if (!map->mesh[i] || !map->clrs[i])
+		{
+			free_map(map);
+			err_exit("Error", "memory allocation failed");
+		}
+	}
+}
+
+void	handle_args(t_map **map, int ac, char **av)
+{
+	char	*file;
+
+	if (ac != 2)
+		err_exit("Error", "Invalid arguments");
+	file = av[1];
+	*map = initialise_map(file);
+	alloc_map(*map);
+	fill_map(*map, file);
 }

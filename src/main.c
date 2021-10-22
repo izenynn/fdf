@@ -11,18 +11,36 @@
 /* ************************************************************************** */
 
 #include <fdf.h>
-#include <libft/ft_fd.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <libft/ft_printf.h>
 
-// TODO check norminette in libft (i added ft_convert_base from home, so maybe norminette does not like it)
+#include <stdio.h>
+
+//TODO norminette libft, i upload it again from home :')
 
 int	main(int ac, char **av)
 {
-	t_global *tab;
+	t_map *map;
 
-	tab = initialise_tab();
-	handle_args(tab, ac, av);
-	free_tab(tab);
+	map = NULL;
+	handle_args(&map, ac, av);
+	// TESTS
+	printf("========== MESH ==========\n");
+	for (int i = 0; i < map->h; i++) {
+        for (int j = 0; j < map->w; j++) {
+            printf("%3d ", map->mesh[i][j]);
+        }
+        printf("\n");
+    }
+	printf("========== CLRS ==========\n");
+	for (int i = 0; i < map->h; i++) {
+        for (int j = 0; j < map->w; j++) {
+            printf("%#9x ", map->clrs[i][j]);
+        }
+        printf("\n");
+    }
+	//
+	free_map(map);
 	return (0);
 }
