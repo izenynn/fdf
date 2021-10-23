@@ -62,6 +62,7 @@ OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_FILES))
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
+	CFLAGS += -D WIN_H=600 -D WIN_W=960
 	LDLIBS = -lft -lmlx_Linux
 	LDLIBS += -lXext -lX11 -lm -lz
 	LMLX_NAME = libmlx_Linux.a
@@ -70,6 +71,7 @@ endif
 ifeq ($(UNAME_S),Darwin)
 #	########## SHARED VARS       ##########
 	CFLAGS += -framework OpenGL -framework AppKit
+	CFLAGS += -D WIN_H=1080 -D WIN_W=1920
 	LDLIBS = -lft -lmlx
 #	########## mlx_mms           ##########
 	LMLX_DIR = $(LIB_PATH)/mlx_mms

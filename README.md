@@ -18,6 +18,10 @@
 sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
 ```
 
+### Change window resolution
+
+- TODO explain how to change the window resolution on makefile
+
 ### Compile
 
 - Just run `make` or `make bonus` (bonus include transform, zoom and rotation)
@@ -35,4 +39,3 @@ make bonus
 ##
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)](https://forthebadge.com)
-
