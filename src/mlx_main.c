@@ -23,8 +23,8 @@ int	mlx_main(t_map *map)
 
 	mlx = mlx_init();
 	img = (t_img *)malloc(sizeof(t_img));
-	img->img = mlx_new_image(mlx, 1920, 1080);
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "fdf");
+	img->img = mlx_new_image(mlx, WIN_W, WIN_H);
+	mlx_win = mlx_new_window(mlx, WIN_W, WIN_H, "fdf");
 	mlx_loop(mlx);
 	free(img);
 	return (EXIT_SUCCESS);

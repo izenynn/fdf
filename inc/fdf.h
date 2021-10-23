@@ -13,7 +13,18 @@
 #ifndef FDF_H
 # define FDF_H
 
-# define BUFFER_SIZE 10
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+
+# ifndef WIN_H
+#  define WIN_H 600
+# endif
+
+# ifndef WIN_W
+#  define WIN_W 960
+# endif
+
 # define LHEX "0123456789abcdef"
 
 // structs

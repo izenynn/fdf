@@ -22,13 +22,7 @@ BLU=\033[1;34m
 # NAMES
 NAME = fdf
 
-LIBFT_NAME = libft.a
-
-########## MAC OS sierra ##########
-LMLX_NAME = libmlx.a
-
-########## MAC OS mojave ##########
-#LMLX_NAME = libmlx.dylib
+LFT_NAME = libft.a
 
 # MAKE
 MAKE = make
@@ -37,19 +31,15 @@ MAKE = make
 CC = gcc
 
 #CFLAGS = -Wall -Wextra -Werror
-
+#CFLAGS += -O3
 #CFLAGS += -fsanitize=address -g3
 
-CFLAGS += -framework OpenGL -framework AppKit
+CFLAGS += -I ./$(LFT_DIR)/inc -I ./$(LMLX_DIR) -I ./inc
 
-CFLAGS += -I ./$(LIBFT_DIR)/inc -I ./$(LMLX_DIR) -I ./inc
+LDFLAGS = -L $(LFT_DIR) -L $(LMLX_DIR)
 
-LDFLAGS = -L $(LIBFT_DIR) -L $(LMLX_DIR)
-
-LDLIBS = -lft -lmlx
-
-LIBFT = $(LIBFT_DIR)/$(LIBFT_NAME)
-
+# LIBS
+LFT = $(LFT_DIR)/$(LFT_NAME)
 LMLX = $(LMLX_DIR)/$(LMLX_NAME)
 
 # PATHS
@@ -58,17 +48,7 @@ OBJ_PATH = obj
 LIB_PATH = lib
 
 # LIBS DIR
-
-LIBFT_DIR = $(LIB_PATH)/libft
-
-########## MAC OS sierra ##########
-LMLX_DIR = $(LIB_PATH)/mlx_macos_sierra
-
-########## MAC OS mojave ##########
-#LMLX_DIR = $(LIB_PATH)/mlx_macos_mojave
-
-########## Linux         ##########
-#LMLX_DIR = $(LIB_PATH)/minilibx_linux
+LFT_DIR = $(LIB_PATH)/libft
 
 # SOURCES
 SRC_FILES =		main.c			utils.c			map_utils.c			\
@@ -80,18 +60,39 @@ OBJ_FILES = $(SRC_FILES:%.c=%.o)
 
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_FILES))
 
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	LDLIBS = -lft -lmlx_Linux
+	LDLIBS += -lXext -lX11 -lm -lz
+	LMLX_NAME = libmlx_Linux.a
+	LMLX_DIR = $(LIB_PATH)/mlx_linux
+endif
+ifeq ($(UNAME_S),Darwin)
+#	########## SHARED VARS       ##########
+	CFLAGS += -framework OpenGL -framework AppKit
+	LDLIBS = -lft -lmlx
+#	########## mlx_mms           ##########
+	LMLX_DIR = $(LIB_PATH)/mlx_mms
+	LMLX_NAME = libmlx.dylib
+#	########## mlx_macos_sierra  ##########
+#	LMLX_NAME = libmlx.a
+#	LMLX_DIR = $(LIB_PATH)/mlx_macos_sierra
+endif
+
 .PHONY: all bonus clean fclean re norm
 
 all: $(NAME) $(CHECKER_NAME)
 
-$(NAME): $(LIBFT) $(LMLX) $(OBJ)
+$(NAME): $(LFT_NAME) $(LMLX_NAME) $(OBJ)
 	$(CC) $^ -o $@ $(CFLAGS) $(LDFLAGS) $(LDLIBS)
 
-$(LIBFT):
-	$(MAKE) all -sC $(LIBFT_DIR)
+$(LFT_NAME):
+	$(MAKE) all -sC $(LFT_DIR)
+	cp $(LFT) $(LFT_NAME)
 
-$(LMLX):
+$(LMLX_NAME):
 	$(MAKE) all -sC $(LMLX_DIR) 2> /dev/null
+	cp $(LMLX) $(LMLX_NAME)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c | $(OBJ_PATH)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -100,12 +101,14 @@ $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH) 2> /dev/null
 
 clean:
-	$(MAKE) clean -sC $(LIBFT_DIR)
+	$(MAKE) clean -sC $(LFT_DIR)
 	$(MAKE) clean -sC $(LMLX_DIR)
+	rm -rf $(LFT_NAME)
+	rm -rf $(LMLX_NAME)
 	rm -rf $(OBJ_PATH)
 
 fclean: clean
-	$(MAKE) fclean -sC $(LIBFT_DIR)
+	$(MAKE) fclean -sC $(LFT_DIR)
 	rm -rf $(NAME)
 
 re: fclean all
@@ -113,6 +116,6 @@ re: fclean all
 norm:
 	@printf "\n${GRN}##########${YEL} NORMINETTE ${GRN}##########${NOCOL}\n"
 	@printf "\n${GRN}LIBFT:${BLU}\n\n"
-	@norminette $(LIBFT_DIR)
+	@norminette $(LFT_DIR)
 	@printf "\n${GRN}FDF:${BLU}\n\n"
 	@norminette $(SRC_PATH)
