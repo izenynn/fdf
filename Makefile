@@ -36,7 +36,7 @@ CC = gcc
 
 CFLAGS += -I ./$(LFT_DIR)/inc -I ./$(LMLX_DIR) -I ./inc
 
-LDFLAGS = -L $(LFT_DIR) -L $(LMLX_DIR)
+LDFLAGS = -L ./
 
 # LIBS
 LFT = $(LFT_DIR)/$(LFT_NAME)
