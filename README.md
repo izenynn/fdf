@@ -30,11 +30,15 @@ sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-d
 make bonus
 ```
 
-- Run `./fdf` with a map as an arguments (there are test maps on `test_maps` folder)
+- Run `./fdf` with a map as an argument (test maps on the `test_maps` folder)
 
 ```sh
 ./fdf ./test_map/42.fdf
 ```
+
+### MAC OS alternative version
+
+- TODO explain how to compile an alternative mlx for mac
 
 ##
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)

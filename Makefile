@@ -24,15 +24,20 @@ NAME = fdf
 
 LFT_NAME = libft.a
 
+LMLX_NAME_MMS = libmlx.dylib
+LMLX_NAME_MACOS_SIERRA = libmlx.a
+LMLX_NAME_LINUX = libmlx_Linux.a
+
 # MAKE
 MAKE = make
 
 # COMPILER
 CC = gcc
 
-#CFLAGS = -Wall -Wextra -Werror
-#CFLAGS += -O3
-#CFLAGS += -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -O3
+CFLAGS += -fsanitize=address -g3
+CFLAGS += -D WIN_H=720 -D WIN_W=1280
 
 CFLAGS += -I ./$(LFT_DIR)/inc -I ./$(LMLX_DIR) -I ./inc
 
@@ -50,6 +55,10 @@ LIB_PATH = lib
 # LIBS DIR
 LFT_DIR = $(LIB_PATH)/libft
 
+LMLX_DIR_LINUX = $(LIB_PATH)/mlx_linux
+LMLX_DIR_MMS = $(LIB_PATH)/mlx_mms
+LMLX_DIR_MACOS_SIERRA = $(LIB_PATH)/mlx_macos_sierra
+
 # SOURCES
 SRC_FILES =		main.c			utils.c			map_utils.c			\
 				handle_args.c	mlx_main.c
@@ -62,23 +71,21 @@ OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_FILES))
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-	CFLAGS += -D WIN_H=600 -D WIN_W=960
 	LDLIBS = -lft -lmlx_Linux
 	LDLIBS += -lXext -lX11 -lm -lz
-	LMLX_NAME = libmlx_Linux.a
-	LMLX_DIR = $(LIB_PATH)/mlx_linux
+	LMLX_NAME = $(LMLX_NAME_LINUX)
+	LMLX_DIR = $(LMLX_DIR_LINUX)
 endif
 ifeq ($(UNAME_S),Darwin)
 #	########## SHARED VARS       ##########
 	CFLAGS += -framework OpenGL -framework AppKit
-	CFLAGS += -D WIN_H=1080 -D WIN_W=1920
 	LDLIBS = -lft -lmlx
 #	########## mlx_mms           ##########
-	LMLX_DIR = $(LIB_PATH)/mlx_mms
-	LMLX_NAME = libmlx.dylib
+	LMLX_NAME = $(LMLX_NAME_MMS)
+	LMLX_DIR = $(LMLX_DIR_MMS)
 #	########## mlx_macos_sierra  ##########
-#	LMLX_NAME = libmlx.a
-#	LMLX_DIR = $(LIB_PATH)/mlx_macos_sierra
+#	LMLX_NAME = $(LMLX_NAME_MACOS_SIERRA)
+#	LMLX_DIR = $(LMLX_DIR_MACOS_SIERRA)
 endif
 
 .PHONY: all bonus clean fclean re norm

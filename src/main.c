@@ -23,7 +23,7 @@
 		printf("========== MESH ==========\n");
 	for (int i = 0; i < map->h; i++) {
 		for (int j = 0; j < map->w; j++) {
-			printf("%3d ", map->mesh[i][j]);
+			printf("%3d ", map->z_mt[i][j]);
 		}
 		printf("\n");
 	}

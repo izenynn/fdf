@@ -23,15 +23,15 @@ void	free_map(t_map *map)
 
 	if (!map)
 		return ;
-	if (map->mesh)
+	if (map->z_mt)
 	{
 		i = -1;
 		while (++i < map->h)
 		{
-			if (map->mesh[i])
-				free(map->mesh[i]);
+			if (map->z_mt[i])
+				free(map->z_mt[i]);
 		}
-		free(map->mesh);
+		free(map->z_mt);
 	}
 	if (map->clrs)
 	{
@@ -68,9 +68,9 @@ void	alloc_map(t_map *map)
 {
 	int	i;
 
-	map->mesh = (int **)malloc(sizeof(int *) * map->h);
+	map->z_mt = (int **)malloc(sizeof(int *) * map->h);
 	map->clrs = (int **)malloc(sizeof(int *) * map->h);
-	if (!map->mesh || !map->clrs)
+	if (!map->z_mt || !map->clrs)
 	{
 		free_map(map);
 		err_exit("Error", "memory allocation failed");
@@ -78,9 +78,9 @@ void	alloc_map(t_map *map)
 	i = -1;
 	while (++i < map->h)
 	{
-		map->mesh[i] = (int *)malloc(sizeof(int) * map->w);
+		map->z_mt[i] = (int *)malloc(sizeof(int) * map->w);
 		map->clrs[i] = (int *)malloc(sizeof(int) * map->w);
-		if (!map->mesh[i] || !map->clrs[i])
+		if (!map->z_mt[i] || !map->clrs[i])
 		{
 			free_map(map);
 			err_exit("Error", "memory allocation failed");

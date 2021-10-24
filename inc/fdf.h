@@ -18,11 +18,11 @@
 # endif
 
 # ifndef WIN_H
-#  define WIN_H 600
+#  define WIN_H 720
 # endif
 
 # ifndef WIN_W
-#  define WIN_W 960
+#  define WIN_W 1280
 # endif
 
 # define LHEX "0123456789abcdef"
@@ -32,7 +32,7 @@ typedef struct s_map
 {
 	int	w;
 	int	h;
-	int	**mesh;
+	int	**z_mt;
 	int	**clrs;
 }	t_map;
 

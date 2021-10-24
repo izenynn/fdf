@@ -35,7 +35,7 @@ static int	get_color(char *s)
 	return (0);
 }
 
-static void	fill_map(t_map *map, int fd)
+static void	fill_matrix(t_map *map, int fd)
 {
 	int		x;
 	int		y;
@@ -55,7 +55,7 @@ static void	fill_map(t_map *map, int fd)
 		x = -1;
 		while (++x < map->w)
 		{
-			map->mesh[y][x] = ft_atoi(split[x]);
+			map->z_mt[y][x] = ft_atoi(split[x]);
 			map->clrs[y][x] = get_color(split[x]);
 		}
 		free_split(split);
@@ -73,7 +73,7 @@ static void	parse_file(t_map *map, char *file)
 		free_map(map);
 		perror_exit(file);
 	}
-	fill_map(map, fd);
+	fill_matrix(map, fd);
 	close(fd);
 }
 
