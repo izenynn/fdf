@@ -34,7 +34,7 @@ MAKE = make
 # COMPILER
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+#CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -O3
 CFLAGS += -fsanitize=address -g3
 CFLAGS += -D WIN_H=720 -D WIN_W=1280
