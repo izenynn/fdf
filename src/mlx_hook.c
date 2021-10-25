@@ -17,8 +17,6 @@
 
 #include <stdio.h>
 
-#define ESC 53
-
 int	key_hook(int keycode, t_vars *vars)
 {
 	printf("Keycode: %d\n", keycode);
@@ -27,7 +25,7 @@ int	key_hook(int keycode, t_vars *vars)
 
 int	close_win(int keycode, t_vars *vars)
 {
-	if (keycode == ESC)
+	if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
 		//free(vars->map);

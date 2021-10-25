@@ -22,6 +22,7 @@ int	mlx_main(t_map *map)
 	vars = (t_vars *)ft_calloc(1, sizeof(t_vars));
 	vars->map = map;
 	vars->img = (t_img *)ft_calloc(1, sizeof(t_img));
+
 	vars->mlx = mlx_init();
 	vars->img->img = mlx_new_image(vars->mlx, WIN_W, WIN_H);
 	vars->win = mlx_new_window(vars->mlx, WIN_W, WIN_H, "fdf");

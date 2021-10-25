@@ -27,6 +27,35 @@
 
 # define LHEX "0123456789abcdef"
 
+# ifdef OSX
+#  define KEY_ESC 53
+#  define KEY_UP 126
+#  define KEY_DOWN 125
+#  define KEY_LEFT 123
+#  define KEY_RIGHT 124
+#  define KEY_W 13
+#  define KEY_S 1
+#  define KEY_A 0
+#  define KEY_D 2
+#  define KEY_Q 12
+#  define KEY_E 14
+# elif LINUX
+#  define KEY_ESC 65307
+#  define KEY_UP 65362
+#  define KEY_DOWN 65364
+#  define KEY_LEFT 65361
+#  define KEY_RIGHT 65363
+#  define KEY_W 119
+#  define KEY_S 115
+#  define KEY_A 97
+#  define KEY_D 100
+#  define KEY_Q 113
+#  define KEY_E 101
+# endif
+
+# define MAX(a, b) (a > b ? a : b)
+# define ABS(a) (a < 0 ? -a : a)
+
 // structs
 typedef struct s_map
 {
@@ -75,5 +104,8 @@ int		close_win(int keycode, t_vars *vars);
 
 // mlx_loop.c
 int		update(t_vars *vars);
+
+// draw.c
+void	draw(int x, int y, int x1, int y1, t_vars *vars);
 
 #endif

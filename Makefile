@@ -63,7 +63,7 @@ LMLX_DIR_MACOS_SIERRA = $(LIB_PATH)/mlx_macos_sierra
 # SOURCES
 SRC_FILES =		main.c			utils.c			map_utils.c			\
 				handle_args.c	mlx_main.c		mlx_hook.c			\
-				mlx_loop.c
+				mlx_loop.c		draw.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 
@@ -73,12 +73,14 @@ OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_FILES))
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
+	CFLAGS += -D LINUX
 	LDLIBS = -lft -lmlx_Linux
 	LDLIBS += -lXext -lX11 -lm -lz
 	LMLX_NAME = $(LMLX_NAME_LINUX)
 	LMLX_DIR = $(LMLX_DIR_LINUX)
 endif
 ifeq ($(UNAME_S),Darwin)
+	CFLAGS += -D OSX
 #	########## SHARED VARS       ##########
 	CFLAGS += -framework OpenGL -framework AppKit
 	LDLIBS = -lft -lmlx
