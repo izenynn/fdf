@@ -77,6 +77,7 @@ typedef struct s_vars
 	void	*win;
 	t_map	*map;
 	t_img	*img;
+	int		color;
 	int		zoom;
 }	t_vars;
 

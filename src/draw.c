@@ -21,6 +21,11 @@ void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
 	float	x_step;
 	float	y_step;
 	int		max;
+	int		z;
+	int		z1;
+
+	z = vars->map->z_mt[(int)y][(int)x];
+	z1 = vars->map->z_mt[(int)y1][(int)x1];
 
 	x *= vars->zoom;
 	y *= vars->zoom;
@@ -35,14 +40,21 @@ void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
 	x_step /= max;
 	y_step /= max;
 
+	//vars->color = (z > 0) ? 0xff0000 : 0xffffff;
+	printf("z: %d\n", z);
+
 	while ((int)(x - x1) || (int)(y - y1))
 	{
-		mlx_pixel_put(vars->mlx, vars->win, x, y, 0xffffff);
+		if (x > WIN_W || y > WIN_H || x < 0 || y < 0)
+			break ;
+		//vars->img->addr = mlx_get_data_addr(vars->img->img,
+		//	&vars->img->bpp, &vars->img->sz_l, &vars->img->endian);
+		//vars->color = mlx_get_color_value(vars->mlx, 0xff00ff);
+		//vars->color = mlx_get_color_value(vars->mlx, vars->map->clrs[y][x]);
+		mlx_pixel_put(vars->mlx, vars->win, x, y, vars->color);
 		x += x_step;
 		y += y_step;
 		//printf("x: %f, y: %f\n", x_step, y_step);
-		if (x > WIN_W || y > WIN_H || x < 0 || y < 0)
-			break ;
 	}
 }
 
@@ -57,8 +69,10 @@ void	draw(t_vars *vars)
 		x = -1;
 		while (++x < WIN_W)
 		{
-			bresenham(x, y, x + 1, y, vars);
-			bresenham(x, y, x, y + 1, vars);
+			if (x < WIN_W - 1)
+				bresenham(x, y, x + 1, y, vars);
+			if (y < WIN_H - 1)
+				bresenham(x, y, x, y + 1, vars);
 		}
 	}
 }
