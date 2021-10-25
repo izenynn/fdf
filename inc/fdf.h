@@ -77,6 +77,7 @@ typedef struct s_vars
 	void	*win;
 	t_map	*map;
 	t_img	*img;
+	int		zoom;
 }	t_vars;
 
 // utils.c
@@ -103,6 +104,7 @@ int		close_win(int keycode, t_vars *vars);
 int		update(t_vars *vars);
 
 // draw.c
-void	bresenham(float x, float y, float x1, float y1, t_vars *vars);
+//void	bresenham(float x, float y, float x1, float y1, t_vars *vars);
+void	draw(t_vars *vars);
 
 #endif

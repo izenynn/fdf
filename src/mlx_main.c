@@ -27,6 +27,8 @@ int	mlx_main(t_map *map)
 	vars->img->img = mlx_new_image(vars->mlx, WIN_W, WIN_H);
 	vars->win = mlx_new_window(vars->mlx, WIN_W, WIN_H, "fdf");
 	//
+	vars->zoom = 20;
+	//
 	mlx_hook(vars->win, 2, 1L<<0, close_win, vars);
 	mlx_key_hook(vars->win, key_hook, vars);
 	//

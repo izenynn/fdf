@@ -57,6 +57,7 @@ static int	old_draw(t_vars *vars)
 int	update(t_vars *vars)
 {
 	//old_draw(vars);
-	bresenham(10, 10, 600, 300, vars);
+	//bresenham(10, 10, 600, 300, vars);
+	draw(vars);
 	return (0);
 }
