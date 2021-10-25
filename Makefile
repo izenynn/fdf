@@ -36,8 +36,9 @@ CC = gcc
 
 #CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -O3
-CFLAGS += -fsanitize=address -g3
-CFLAGS += -D WIN_H=720 -D WIN_W=1280
+#CFLAGS += -fsanitize=address -g3
+#CFLAGS += -D WIN_H=720 -D WIN_W=1280
+CFLAGS += -D WIN_H=1080 -D WIN_W=1920
 
 CFLAGS += -I ./$(LFT_DIR)/inc -I ./$(LMLX_DIR) -I ./inc
 
@@ -61,7 +62,8 @@ LMLX_DIR_MACOS_SIERRA = $(LIB_PATH)/mlx_macos_sierra
 
 # SOURCES
 SRC_FILES =		main.c			utils.c			map_utils.c			\
-				handle_args.c	mlx_main.c
+				handle_args.c	mlx_main.c		mlx_hook.c			\
+				mlx_loop.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 

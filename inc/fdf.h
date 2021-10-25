@@ -45,6 +45,13 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+typedef struct s_vars
+{
+	void	*mlx;
+	void	*win;
+	t_map	*map;
+	t_img	*img;
+}	t_vars;
 
 // utils.c
 void		err_exit(const char *err, const char *msg);
@@ -61,5 +68,12 @@ void	handle_args(t_map **map, int ac, char **av);
 
 // mlx_main.c
 int		mlx_main(t_map *map);
+
+// mlx_hook.c
+int		key_hook(int keycode, t_vars *vars);
+int		close_win(int keycode, t_vars *vars);
+
+// mlx_loop.c
+int		update(t_vars *vars);
 
 #endif
