@@ -53,9 +53,6 @@
 #  define KEY_E 101
 # endif
 
-# define MAX(a, b) (a > b ? a : b)
-# define ABS(a) (a < 0 ? -a : a)
-
 // structs
 typedef struct s_map
 {
@@ -106,6 +103,6 @@ int		close_win(int keycode, t_vars *vars);
 int		update(t_vars *vars);
 
 // draw.c
-void	draw(int x, int y, int x1, int y1, t_vars *vars);
+void	bresenham(float x, float y, float x1, float y1, t_vars *vars);
 
 #endif

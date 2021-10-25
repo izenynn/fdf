@@ -37,8 +37,8 @@ CC = gcc
 #CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -O3
 #CFLAGS += -fsanitize=address -g3
-#CFLAGS += -D WIN_H=720 -D WIN_W=1280
-CFLAGS += -D WIN_H=1080 -D WIN_W=1920
+CFLAGS += -D WIN_H=720 -D WIN_W=1280
+#CFLAGS += -D WIN_H=1080 -D WIN_W=1920
 
 CFLAGS += -I ./$(LFT_DIR)/inc -I ./$(LMLX_DIR) -I ./inc
 

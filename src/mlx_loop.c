@@ -13,7 +13,7 @@
 #include <fdf.h>
 #include <mlx.h>
 
-static int	draw(t_vars *vars)
+static int	old_draw(t_vars *vars)
 {
 	int	x;
 	int	y;
@@ -56,6 +56,7 @@ static int	draw(t_vars *vars)
 
 int	update(t_vars *vars)
 {
-	draw(vars);
+	//old_draw(vars);
+	bresenham(10, 10, 600, 300, vars);
 	return (0);
 }

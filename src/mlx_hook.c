@@ -25,13 +25,13 @@ int	key_hook(int keycode, t_vars *vars)
 
 int	close_win(int keycode, t_vars *vars)
 {
-	if (keycode == KEY_ESC)
+	/*if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
 		//free(vars->map);
 		//free(vars->img);
 		//free(vars);
 		exit (EXIT_SUCCESS);
-	}
+	}*/
 	return (0);
 }
