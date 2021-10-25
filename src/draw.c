@@ -16,6 +16,12 @@
 
 #include <stdio.h>
 
+void	isometric(float *x, float *y, int z)
+{
+	*x = (*x - *y) * cos(0.8);
+	*y = (*x + *y) * sin(0.8) - z;
+}
+
 void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
 {
 	float	x_step;
@@ -32,6 +38,14 @@ void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
 	x1 *= vars->zoom;
 	y1 *= vars->zoom;
 
+	isometric(&x, &y, z);
+	isometric(&x1, &y1, z1);
+
+	x += vars->shift_x;
+	y += vars->shift_y;
+	x1 += vars->shift_x;
+	y1 += vars->shift_y;
+
 	x_step = x1 - x;
 	y_step = y1 - y;
 
@@ -40,7 +54,7 @@ void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
 	x_step /= max;
 	y_step /= max;
 
-	vars->color = (z > 0) ? 0xff0000 : 0xffffff;
+	vars->color = (z || z1) ? 0xff0000 : 0xffffff;
 
 	while ((int)(x - x1) || (int)(y - y1))
 	{

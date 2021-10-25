@@ -25,6 +25,10 @@
 #  define WIN_W 1280
 # endif
 
+# ifndef SHIFT
+#  define SHIFT 10
+# endif
+
 # define LHEX "0123456789abcdef"
 
 # ifdef OSX
@@ -78,6 +82,8 @@ typedef struct s_vars
 	t_map	*map;
 	t_img	*img;
 	int		color;
+	int		shift_x;
+	int		shift_y;
 	int		zoom;
 }	t_vars;
 
@@ -99,7 +105,6 @@ int		mlx_main(t_map *map);
 
 // mlx_hook.c
 int		key_hook(int keycode, t_vars *vars);
-int		close_win(int keycode, t_vars *vars);
 
 // mlx_loop.c
 int		update(t_vars *vars);

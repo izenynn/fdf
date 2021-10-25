@@ -29,10 +29,10 @@ int	mlx_main(t_map *map)
 	//
 	vars->zoom = 20;
 	//
-	mlx_hook(vars->win, 2, 1L<<0, close_win, vars);
-	mlx_key_hook(vars->win, key_hook, vars);
+	mlx_hook(vars->win, 2, 1L<<0, key_hook, vars);
+	//mlx_key_hook(vars->win, key_hook, vars);
 	//
-	mlx_loop_hook(vars->mlx, update, vars);
+	//mlx_loop_hook(vars->mlx, update, vars);
 	mlx_loop(vars->mlx);
 	//
 	//free(vars->map);
