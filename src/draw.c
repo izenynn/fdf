@@ -40,8 +40,7 @@ void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
 	x_step /= max;
 	y_step /= max;
 
-	//vars->color = (z > 0) ? 0xff0000 : 0xffffff;
-	printf("z: %d\n", z);
+	vars->color = (z > 0) ? 0xff0000 : 0xffffff;
 
 	while ((int)(x - x1) || (int)(y - y1))
 	{
@@ -64,14 +63,14 @@ void	draw(t_vars *vars)
 	int	y;
 
 	y = -1;
-	while (++y < WIN_H)
+	while (++y < vars->map->h)
 	{
 		x = -1;
-		while (++x < WIN_W)
+		while (++x < vars->map->w)
 		{
-			if (x < WIN_W - 1)
+			if (x < vars->map->w - 1)
 				bresenham(x, y, x + 1, y, vars);
-			if (y < WIN_H - 1)
+			if (y < vars->map->h - 1)
 				bresenham(x, y, x, y + 1, vars);
 		}
 	}
