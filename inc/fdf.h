@@ -20,13 +20,15 @@
 # ifndef WIN_H
 #  define WIN_H 720
 # endif
-
 # ifndef WIN_W
 #  define WIN_W 1280
 # endif
 
 # ifndef SHIFT
 #  define SHIFT 10
+# endif
+# ifndef ROT_SHIFT
+#  define ROT_SHIFT 0.25
 # endif
 
 # define LHEX "0123456789abcdef"
@@ -84,6 +86,7 @@ typedef struct s_vars
 	int		color;
 	int		shift_x;
 	int		shift_y;
+	float	rot;
 	int		zoom;
 }	t_vars;
 

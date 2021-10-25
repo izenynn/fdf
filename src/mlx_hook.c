@@ -31,7 +31,7 @@ int	key_hook(int keycode, t_vars *vars)
 {
 	printf("Keycode: %d\n", keycode);
 	if (keycode == KEY_ESC)
-		close_win(vars);
+		;//close_win(vars);
 	if (keycode == KEY_UP)
 		vars->shift_y -= SHIFT;
 	if (keycode == KEY_DOWN)
@@ -40,6 +40,10 @@ int	key_hook(int keycode, t_vars *vars)
 		vars->shift_x -= SHIFT;
 	if (keycode == KEY_RIGHT)
 		vars->shift_x += SHIFT;
+	if (keycode == KEY_Q)
+		vars->rot += ROT_SHIFT;
+	if (keycode == KEY_E)
+		vars->rot -= ROT_SHIFT;
 	mlx_clear_window(vars->mlx, vars->win);
 	draw(vars);
 	return (0);
