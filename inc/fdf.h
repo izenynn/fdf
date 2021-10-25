@@ -41,7 +41,7 @@ typedef struct s_img
 	void	*img;
 	char	*addr;
 	int		bpp;
-	int		line_l;
+	int		sz_l;
 	int		endian;
 }	t_img;
 
