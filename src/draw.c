@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <fdf.h>
+#include <libft/ft_mem.h>
 #include <mlx.h>
 #include <math.h>
 
@@ -72,6 +73,7 @@ void	draw(t_vars *vars)
 	int	x;
 	int	y;
 
+	ft_bzero(vars->img->addr, WIN_H * WIN_W * (vars->img->bpp / 8));
 	y = -1;
 	while (++y < vars->map->h)
 	{
@@ -85,8 +87,8 @@ void	draw(t_vars *vars)
 		}
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);
-	mlx_destroy_image(vars->mlx, vars->img->img);
-	vars->img->img = mlx_new_image(vars->mlx, WIN_W, WIN_H);
-	vars->img->addr = mlx_get_data_addr(vars->img->img,
-		&vars->img->bpp, &vars->img->sz_l, &vars->img->endian);
+	//mlx_destroy_image(vars->mlx, vars->img->img);
+	//vars->img->img = mlx_new_image(vars->mlx, WIN_W, WIN_H);
+	//vars->img->addr = mlx_get_data_addr(vars->img->img,
+	//	&vars->img->bpp, &vars->img->sz_l, &vars->img->endian);
 }

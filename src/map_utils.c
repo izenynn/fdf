@@ -46,11 +46,16 @@ void	free_map(t_map *map)
 	free(map);
 }
 
-static int	cnt_nbrs(t_map *map, char *line)
+static int	cnt_nbrs(t_map *map, char *line, char *file)
 {
 	int		cnt;
 	char	**split;
 
+	if (!line)
+	{
+		free_map(map);
+		err_exit(file, "is an empty map");
+	}
 	split = ft_split(line, ' ');
 	if (!split)
 	{
@@ -101,9 +106,14 @@ t_map	*initialise_map(char *file)
 	if (fd < 0)
 		perror_exit(file);
 	line = ft_get_next_line(fd);
-	map->w = cnt_nbrs(map, line);
+	map->w = cnt_nbrs(map, line, file);
 	while (line)
 	{
+		if (cnt_nbrs(map, line, file) != map->w && map->w != 0)
+		{
+			free_map(map);
+			err_exit(file, "is not a valid map");
+		}
 		map->h++;
 		free(line);
 		line = ft_get_next_line(fd);
