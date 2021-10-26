@@ -11,37 +11,54 @@
 /* ************************************************************************** */
 
 #include <fdf.h>
+#include <mlx.h>
 
-static int get_light(int start, int end, double percent)
+static double	percent(int start, int end, int current)
 {
-    return ((int)((1 - percent) * start + percent * end));
+	double	placement;
+	double	distance;
+
+	placement = current - start;
+	distance = end - start;
+	if (!distance)
+		return (1.0);
+	return (placement / distance);
 }
 
-static int calc_color(t_point current, t_point start, t_point end,
-	t_point delta)
+static int	get_light(int start, int end, double percent)
+{
+	return ((int)((1 - percent) * start + percent * end));
+}
+
+int	get_color(t_point current, t_point start, t_point end, t_point delta)
 {
 	int		r;
 	int		g;
 	int		b;
-	double	percent;
+	double	percentage;
 
 	if (current.color == end.color)
-	    return (current.color);
+		return (current.color);
 	if (delta.x > delta.y)
-	    percent = percent(start.x, end.x, current.x);
+		percentage = percent(start.x, end.x, current.x);
 	else
-	    percent = percent(start.y, end.y, current.y);
-	r = get_light((start.color >> 16) & 0xFF, (end.color >> 16) & 0xFF, percent);
-	g = get_light((start.color >> 8) & 0xFF, (end.color >> 8) & 0xFF, percent);
-	b = get_light(start.color & 0xFF, end.color & 0xFF, percent);
+		percentage = percent(start.y, end.y, current.y);
+	r = get_light((start.color >> 16) & 0xFF, (end.color >> 16) & 0xFF,
+			percentage);
+	g = get_light((start.color >> 8) & 0xFF, (end.color >> 8) & 0xFF,
+			percentage);
+	b = get_light(start.color & 0xFF, end.color & 0xFF, percentage);
 	return ((r << 16) | (g << 8) | b);
 }
 
-int		get_color(t_vars *vars, t_point cur, t_point start, t_point end,
+/*int	get_color(t_vars *vars, t_point cur, t_point start, t_point end,
 	t_point delta)
 {
 	int	color;
 
-	color = calc_color(cur, s, e, delta);
-	return (mlx_get_color_value(vars->mlx, vars->map->clrs[y][x]));
-}
+	cur.color = vars->map->clrs[cur.y][cur.x];
+	start.color = vars->map->clrs[start.y][start.x];
+	end.color = vars->map->clrs[end.y][end.x];
+	color = calc_color(cur, start, end, delta);
+	return (mlx_get_color_value(vars->mlx, color));
+}*/

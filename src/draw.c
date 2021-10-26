@@ -15,6 +15,10 @@
 #include <mlx.h>
 #include <math.h>
 
+#include <stdio.h>
+
+#define ABS(a) ((a < 0) ? (-(a)) : (a))
+
 void	draw_menu(t_vars *vars)
 {
 	int		y;
@@ -38,33 +42,62 @@ void	draw_menu(t_vars *vars)
 	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  Parallel: P");
 }
 
-void	isometric(float *x, float *y, float z, t_vars *vars)
+void	bresenham(t_vars *vars, t_point start, t_point end)
 {
-	int	prev_x;
-	int	prev_y;
+	t_point	cur;
+	t_point	sign;
+	t_point	delta;
+	int	error[2];
 
-	if (!vars->iso)
-		return ;
-	/**x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8) - z;*/
-	prev_x = *x;
-	prev_y = *y;
-	*x = (prev_x - prev_y) * cos(0.523599);
-	*y = -z + (prev_x + prev_y) * sin(0.523599);
+	delta.x = ABS(end.x - start.x);
+	delta.y = ABS(end.y - start.y);
+	sign.x = -1;
+	sign.y = -1;
+	if (start.x < end.x)
+		sign.x = 1;
+	if (start.y < end.y)
+		sign.y = 1;
+	error[0] = delta.x - delta.y;
+	cur = start;
+	while (cur.x != end.x || cur.y != end.y)
+	{
+		img_pixel_put(vars, cur.x, cur.y, get_color(cur, start, end, delta));
+		error[1] = error[0] * 2;
+		if (error[1] > -delta.y)
+		{
+			error[0] -= delta.y;
+			cur.x += sign.x;
+		}
+		if (error[1] < delta.x)
+		{
+			error[0] += delta.x;
+			cur.y += sign.y;
+		}
+	}
 }
-
-void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
-{
+/*
 	float	x_step;
 	float	y_step;
 	int		max;
+
 	float	z;
 	float	z1;
 
 	z = vars->map->z_mt[(int)y][(int)x];
 	z1 = vars->map->z_mt[(int)y1][(int)x1];
 
-	vars->color = get_color(vars, x, y);
+	//vars->color = get_color(vars, x, y);
+	start.x = x;
+	end.x = x1;
+	start.y = y;
+	end.y = y1;
+
+	delta.x = fabs(end.x - start.x);
+	delta.y = end.y - start.y;
+
+	cur = start;
+
+	// finish with t_point
 
 	x *= vars->zoom;
 	y *= vars->zoom;
@@ -97,14 +130,27 @@ void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
 	x_step /= max;
 	y_step /= max;
 
-	//vars->color = (z || z1) ? 0xff0000 : 0xffffff;
-
 	while ((int)(x - x1) || (int)(y - y1))
 	{
+		vars->color = get_color(vars, cur, start, end, delta);
 		img_pixel_put(vars, x, y);
 		x += x_step;
 		y += y_step;
 	}
+}*/
+
+t_point	get_coords(t_vars *vars, t_point point)
+{
+	point.x *= vars->zoom;
+	point.y *= vars->zoom;
+	point.z *= (vars->zoom / 10) * vars->flat;
+	rot_x(vars, &point.y, &point.z);
+	rot_y(vars, &point.x, &point.z);
+	rot_z(vars, &point.x, &point.y);
+	isometric(vars, &point.x, &point.y, point.z);
+	point.x += vars->shift_x;
+	point.y += vars->shift_y;
+	return (point);
 }
 
 void	draw(t_vars *vars)
@@ -122,9 +168,13 @@ void	draw(t_vars *vars)
 			while (++x < vars->map->w)
 			{
 				if (x < vars->map->w - 1)
-					bresenham(x, y, x + 1, y, vars);
+					bresenham(vars,
+						get_coords(vars, new_point(x, y, vars)),
+						get_coords(vars, new_point(x + 1, y, vars)));
 				if (y < vars->map->h - 1)
-					bresenham(x, y, x, y + 1, vars);
+					bresenham(vars,
+						get_coords(vars, new_point(x, y, vars)),
+						get_coords(vars, new_point(x, y + 1, vars)));
 			}
 		}
 	}

@@ -14,7 +14,20 @@
 #include <mlx.h>
 #include <math.h>
 
-void	rot_x(t_vars *vars, float *y, float *z)
+void	isometric(t_vars *vars, int *x, int *y, int z)
+{
+	int	prev_x;
+	int	prev_y;
+
+	if (!vars->iso)
+		return ;
+	prev_x = *x;
+	prev_y = *y;
+	*x = (prev_x - prev_y) * cos(0.523599);
+	*y = -z + (prev_x + prev_y) * sin(0.523599);
+}
+
+void	rot_x(t_vars *vars, int *y, int *z)
 {
 	float	prev_y;
 
@@ -23,7 +36,7 @@ void	rot_x(t_vars *vars, float *y, float *z)
 	*z = (-prev_y * sin(vars->rot_x)) + (*z * cos(vars->rot_x));
 }
 
-void	rot_y(t_vars *vars, float *x, float *z)
+void	rot_y(t_vars *vars, int *x, int *z)
 {
 	float	prev_x;
 
@@ -32,7 +45,7 @@ void	rot_y(t_vars *vars, float *x, float *z)
 	*z = (-prev_x * sin(vars->rot_y)) + (*z * cos(vars->rot_y));
 }
 
-void	rot_z(t_vars *vars, float *x, float *y)
+void	rot_z(t_vars *vars, int *x, int *y)
 {
 	float	prev_x;
 
@@ -41,7 +54,7 @@ void	rot_z(t_vars *vars, float *x, float *y)
 	*y = (prev_x * sin(vars->rot_z)) + (*y * cos(vars->rot_z));
 }
 
-void	img_pixel_put(t_vars *vars, int x, int y)
+void	img_pixel_put(t_vars *vars, int x, int y, int color)
 {
 	int	pixel;
 
@@ -50,16 +63,16 @@ void	img_pixel_put(t_vars *vars, int x, int y)
 	pixel = (y * vars->img->sz_l) + (x * 4);
 	if (vars->img->endian == 1)
 	{
-		vars->img->addr[pixel + 0] = (vars->color >> 24);
-		vars->img->addr[pixel + 1] = (vars->color >> 16) & 0xFF;
-		vars->img->addr[pixel + 2] = (vars->color >> 8) & 0xFF;
-		vars->img->addr[pixel + 3] = (vars->color) & 0xFF;
+		vars->img->addr[pixel + 0] = (color >> 24);
+		vars->img->addr[pixel + 1] = (color >> 16) & 0xFF;
+		vars->img->addr[pixel + 2] = (color >> 8) & 0xFF;
+		vars->img->addr[pixel + 3] = (color) & 0xFF;
 	}
 	else if (vars->img->endian == 0)
 	{
-		vars->img->addr[pixel + 0] = (vars->color) & 0xFF;
-		vars->img->addr[pixel + 1] = (vars->color >> 8) & 0xFF;
-		vars->img->addr[pixel + 2] = (vars->color >> 16) & 0xFF;
-		vars->img->addr[pixel + 3] = (vars->color >> 24);
+		vars->img->addr[pixel + 0] = (color) & 0xFF;
+		vars->img->addr[pixel + 1] = (color >> 8) & 0xFF;
+		vars->img->addr[pixel + 2] = (color >> 16) & 0xFF;
+		vars->img->addr[pixel + 3] = (color >> 24);
 	}
 }

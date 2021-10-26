@@ -12,10 +12,9 @@
 
 #include <fdf.h>
 #include <mlx.h>
+#include <libft/ft_printf.h>
 #include <unistd.h>
 #include <stdlib.h>
-
-#include <stdio.h>
 
 int	close_win(t_vars *vars)
 {
@@ -26,7 +25,7 @@ int	close_win(t_vars *vars)
 
 int	key_hook(int keycode, t_vars *vars)
 {
-	printf("Keycode: %d\n", keycode);
+	ft_printf("Keycode: %3d\n", keycode);
 	if (keycode == KEY_ESC)
 		close_win(vars);
 	if (keycode == KEY_R)
@@ -45,8 +44,6 @@ int	key_hook(int keycode, t_vars *vars)
 		vars->iso = 1;
 	if (keycode == KEY_P)
 		vars->iso = 0;
-	//mlx_clear_window(vars->mlx, vars->win);
 	draw(vars);
-	//mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	return (0);
 }

@@ -11,25 +11,8 @@
 /* ************************************************************************** */
 
 #include <fdf.h>
-#include <libft/ft_printf.h>
 #include <mlx.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
-
-void	err_exit(const char *err, const char *msg)
-{
-	ft_dprintf(STDERR_FILENO, "%s: %s\n", err, msg);
-	exit(EXIT_FAILURE);
-}
-
-void	perror_exit(const char *str)
-{
-	perror(str);
-	exit(EXIT_FAILURE);
-}
 
 void	free_split(char **split)
 {
@@ -55,4 +38,15 @@ void	free_all(t_vars *vars)
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_image(vars->mlx, vars->img->img);
 	free_vars(vars);
+}
+
+t_point	new_point(int x, int y, t_vars *vars)
+{
+	t_point	out;
+
+	out.x = x;
+	out.y = y;
+	out.z = vars->map->z_mt[y][x];
+	out.color = vars->map->clrs[y][x];
+	return (out);
 }

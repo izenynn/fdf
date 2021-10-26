@@ -121,18 +121,21 @@ typedef struct s_vars
 
 typedef struct s_point
 {
-	float	x;
-	float	y;
-	float	z;
-	int		color;
+	int	x;
+	int	y;
+	int	z;
+	int	color;
 }	t_point;
 
 // utils.c
-void	err_exit(const char *err, const char *msg);
-void	perror_exit(const char *str);
 void	free_split(char **split);
 void	free_vars(t_vars *vars);
 void	free_all(t_vars *vars);
+t_point	new_point(int x, int y, t_vars *vars);
+
+// error.c
+void	err_exit(const char *err, const char *msg);
+void	perror_exit(const char *str);
 
 // tab_utils.c
 void	free_map(t_map *tab);
@@ -163,16 +166,19 @@ void	draw_menu(t_vars *vars);
 void	draw(t_vars *vars);
 
 // draw_utils.c
-void	rot_x(t_vars *vars, float *y, float *z);
-void	rot_y(t_vars *vars, float *x, float *z);
-void	rot_z(t_vars *vars, float *x, float *y);
-int		get_color(t_vars *vars, int x, int y);
-void	img_pixel_put(t_vars *vars, int x, int y);
+void	isometric(t_vars *vars, int *x, int *y, int z);
+void	rot_x(t_vars *vars, int *y, int *z);
+void	rot_y(t_vars *vars, int *x, int *z);
+void	rot_z(t_vars *vars, int *x, int *y);
+void	img_pixel_put(t_vars *vars, int x, int y, int color);
 
 // controls.c
 void	handle_zoom(int keycode, t_vars *vars);
 void	handle_move(int keycode, t_vars *vars);
 void	handle_rot(int keycode, t_vars *vars);
 void	handle_flattening(int keycode, t_vars *vars);
+
+// color.c
+int	get_color(t_point current, t_point start, t_point end, t_point delta);
 
 #endif

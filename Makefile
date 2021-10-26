@@ -73,7 +73,8 @@ LMLX_DIR_MACOS_SIERRA = $(LIB_PATH)/mlx_macos_sierra
 SRC_FILES =		main.c			utils.c			map_utils.c			\
 				handle_args.c	mlx_main.c		mlx_hook.c			\
 				mlx_loop.c		draw.c			draw_utils.c		\
-				controls.c		mlx_utils.c
+				controls.c		mlx_utils.c		color.c				\
+				error.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 
