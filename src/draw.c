@@ -27,6 +27,7 @@ void	draw_menu(t_vars *vars)
 	mlx_string_put(mlx, win, 15, y += 20, WHITE, "Controls:");
 	mlx_string_put(mlx, win, 15, y += 50, WHITE, "Move: W, A, S, D");
 	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Zoom: Q / E");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Flattening: - / +");
 	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Rotate: Arrows");
 	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Perspective:");
 	mlx_string_put(mlx, win, 30, y += 25, WHITE, "- Isometric: I");
@@ -66,6 +67,8 @@ void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
 	x1 *= vars->zoom;
 	y1 *= vars->zoom;
 
+	z *= (vars->zoom / 10) * vars->flat;
+	z1 *= (vars->zoom / 10) * vars->flat;
 
 	isometric(&x, &y, z, vars);
 	isometric(&x1, &y1, z1, vars);
@@ -87,8 +90,6 @@ void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
 
 	while ((int)(x - x1) || (int)(y - y1))
 	{
-		if (x >= WIN_W || y >= WIN_H || x < 0 || y < 0)
-			break ;
 		img_pixel_put(vars, x, y);
 		x += x_step;
 		y += y_step;

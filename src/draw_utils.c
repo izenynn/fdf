@@ -24,6 +24,8 @@ void	img_pixel_put(t_vars *vars, int x, int y)
 {
 	int	pixel;
 
+	if (y >= WIN_H || x >= WIN_W || y < 0 || x < 0)
+		return ;
 	pixel = (y * vars->img->sz_l) + (x * 4);
 	if (vars->img->endian == 1)
 	{

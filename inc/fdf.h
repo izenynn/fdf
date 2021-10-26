@@ -28,10 +28,10 @@
 #  define SHIFT 10
 # endif
 # ifndef ROT_SHIFT
-#  define ROT_SHIFT 0.25
+#  define ROT_SHIFT 0.5
 # endif
 # ifndef ZOOM_SHIFT
-#  define ZOOM_SHIFT 0.5;
+#  define ZOOM_SHIFT 0.5
 # endif
 
 # define LHEX "0123456789abcdef"
@@ -52,6 +52,8 @@
 #  define KEY_E 14
 #  define KEY_I 34
 #  define KEY_P 35
+#  define KEY_MINUS 27
+#  define KEY_PLUS 24
 # elif LINUX
 #  define KEY_ESC 65307
 #  define KEY_UP 65362
@@ -66,6 +68,8 @@
 #  define KEY_E 101
 //#  define KEY_I ?
 //#  define KEY_P ?
+//#  define KEY_MINUS ?
+//#  define KEY_PLUS ?
 # endif
 
 // structs
@@ -98,6 +102,10 @@ typedef struct s_vars
 	float	rot;
 	float	zoom;
 	int		iso;
+	float	flat;
+	float	rot_x;
+	float	rot_y;
+	float	rot_z;
 }	t_vars;
 
 // utils.c
@@ -132,5 +140,11 @@ void	draw(t_vars *vars);
 // draw_utils.c
 int		get_color(t_vars *vars, int x, int y);
 void	img_pixel_put(t_vars *vars, int x, int y);
+
+// controls.c
+void	handle_zoom(int keycode, t_vars *vars);
+void	handle_move(int keycode, t_vars *vars);
+void	handle_rot(int keycode, t_vars *vars);
+void	handle_flattening(int keycode, t_vars *vars);
 
 #endif

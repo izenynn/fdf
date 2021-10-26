@@ -35,16 +35,16 @@
 }*/
 //
 
-void	show_leaks(void)
+/*void	show_leaks(void)
 {
 	system("leaks -q fdf");
-}
+}*/
 
 int	main(int ac, char **av)
 {
 	t_map	*map;
 
-	atexit(show_leaks);
+	//atexit(show_leaks);
 	map = NULL;
 	handle_args(&map, ac, av);
 	mlx_main(map);

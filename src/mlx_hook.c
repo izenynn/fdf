@@ -29,25 +29,16 @@ int	key_hook(int keycode, t_vars *vars)
 	printf("Keycode: %d\n", keycode);
 	if (keycode == KEY_ESC)
 		close_win(vars);
-	if (keycode == KEY_W)
-		vars->shift_y += SHIFT;
-	if (keycode == KEY_S)
-		vars->shift_y -= SHIFT;
-	if (keycode == KEY_A)
-		vars->shift_x += SHIFT;
-	if (keycode == KEY_D)
-		vars->shift_x -= SHIFT;
-	if (keycode == KEY_Q)
-	{
-		if (vars->zoom > 0)
-			vars->zoom -= ZOOM_SHIFT;
-	}
-	if (keycode == KEY_E)
-		vars->zoom += ZOOM_SHIFT;
-	if (keycode == KEY_UP)
-		vars->rot += ROT_SHIFT;
-	if (keycode == KEY_DOWN)
-		vars->rot -= ROT_SHIFT;
+	if (keycode == KEY_W || keycode == KEY_S
+		|| keycode == KEY_A || keycode == KEY_D)
+		handle_move(keycode, vars);
+	if (keycode == KEY_Q || keycode == KEY_E)
+		handle_zoom(keycode, vars);
+	if (keycode == KEY_UP || keycode == KEY_DOWN
+		|| keycode == KEY_LEFT || keycode == KEY_RIGHT)
+		handle_rot(keycode, vars);
+	if (keycode == KEY_MINUS || keycode == KEY_PLUS)
+		handle_flattening(keycode, vars);
 	if (keycode == KEY_I)
 		vars->iso = 1;
 	if (keycode == KEY_P)
