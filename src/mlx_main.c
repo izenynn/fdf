@@ -13,18 +13,22 @@
 #include <fdf.h>
 #include <mlx.h>
 #include <libft/ft_mem.h>
+#include <libft/ft_printf.h>
 #include <stdlib.h>
 
 int	mlx_main(t_map *map)
 {
 	t_vars	*vars;
 
+	ft_printf("Starting minilibx...\n");
 	vars = (t_vars *)ft_calloc(1, sizeof(t_vars));
 	vars->map = map;
 	vars->img = (t_img *)ft_calloc(1, sizeof(t_img));
 
 	vars->mlx = mlx_init();
 	vars->img->img = mlx_new_image(vars->mlx, WIN_W, WIN_H);
+	vars->img->addr = mlx_get_data_addr(vars->img->img,
+		&vars->img->bpp, &vars->img->sz_l, &vars->img->endian);
 	vars->win = mlx_new_window(vars->mlx, WIN_W, WIN_H, "fdf");
 	//
 	vars->zoom = 20;
@@ -34,10 +38,12 @@ int	mlx_main(t_map *map)
 	//mlx_key_hook(vars->win, key_hook, vars);
 	//
 	//mlx_loop_hook(vars->mlx, update, vars);
+	draw(vars);
 	mlx_loop(vars->mlx);
 	//
 	//free(vars->map);
 	//free(vars->img); // mlx_destroy_img(vars->img);
 	//free(vars);
+	free_all(vars);
 	return (EXIT_SUCCESS);
 }

@@ -13,7 +13,7 @@
 #include <fdf.h>
 #include <mlx.h>
 
-static int	old_draw(t_vars *vars)
+/*static int	old_draw(t_vars *vars)
 {
 	int	x;
 	int	y;
@@ -52,12 +52,13 @@ static int	old_draw(t_vars *vars)
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, img->img, 0, 0);
 	return (0);
-}
+}*/
 
 int	update(t_vars *vars)
 {
 	//old_draw(vars);
 	//bresenham(10, 10, 600, 300, vars);
+	mlx_clear_window(vars->mlx, vars->win);
 	draw(vars);
 	return (0);
 }

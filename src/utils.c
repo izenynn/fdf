@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fdf.h>
 #include <libft/ft_printf.h>
+#include <mlx.h>
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
@@ -37,4 +39,13 @@ void	free_split(char **split)
 	while (split[++i])
 		free(split[i]);
 	free(split);
+}
+
+void	free_all(t_vars *vars)
+{
+	mlx_destroy_window(vars->mlx, vars->win);
+	mlx_destroy_image(vars->mlx, vars->img->img);
+	free_map(vars->map);
+	free(vars->img);
+	free(vars);
 }

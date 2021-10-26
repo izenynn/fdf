@@ -17,34 +17,35 @@
 
 #include <stdio.h>
 
-static int	close_win(t_vars *vars)
+static void	close_win(t_vars *vars)
 {
-	mlx_destroy_window(vars->mlx, vars->win);
-	//free(vars->map);
-	//free(vars->img);
-	//free(vars);
+	free_all(vars);
 	exit (EXIT_SUCCESS);
-	return (0);
 }
 
 int	key_hook(int keycode, t_vars *vars)
 {
 	printf("Keycode: %d\n", keycode);
 	if (keycode == KEY_ESC)
-		;//close_win(vars);
-	if (keycode == KEY_UP)
+		close_win(vars);
+	if (keycode == KEY_W)
 		vars->shift_y -= SHIFT;
-	if (keycode == KEY_DOWN)
+	if (keycode == KEY_S)
 		vars->shift_y += SHIFT;
-	if (keycode == KEY_LEFT)
+	if (keycode == KEY_A)
 		vars->shift_x -= SHIFT;
-	if (keycode == KEY_RIGHT)
+	if (keycode == KEY_D)
 		vars->shift_x += SHIFT;
 	if (keycode == KEY_Q)
-		vars->rot += ROT_SHIFT;
+		vars->zoom -= ZOOM_SHIFT;
 	if (keycode == KEY_E)
+		vars->zoom += ZOOM_SHIFT;
+	if (keycode == KEY_UP)
+		vars->rot += ROT_SHIFT;
+	if (keycode == KEY_DOWN)
 		vars->rot -= ROT_SHIFT;
-	mlx_clear_window(vars->mlx, vars->win);
+	//mlx_clear_window(vars->mlx, vars->win);
 	draw(vars);
+	//mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	return (0);
 }

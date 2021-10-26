@@ -15,8 +15,6 @@
 #include <stdlib.h>
 #include <libft/ft_printf.h>
 
-#include <stdio.h>
-
 // TESTS
 /*static void	print_map(t_map *map)
 {
@@ -37,13 +35,18 @@
 }*/
 //
 
+void	show_leaks(void)
+{
+	system("leaks -q fdf");
+}
+
 int	main(int ac, char **av)
 {
 	t_map	*map;
 
+	atexit(show_leaks);
 	map = NULL;
 	handle_args(&map, ac, av);
 	mlx_main(map);
-	free_map(map);
 	return (0);
 }

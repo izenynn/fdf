@@ -30,6 +30,9 @@
 # ifndef ROT_SHIFT
 #  define ROT_SHIFT 0.25
 # endif
+# ifndef ZOOM_SHIFT
+#  define ZOOM_SHIFT 1;
+# endif
 
 # define LHEX "0123456789abcdef"
 
@@ -94,6 +97,7 @@ typedef struct s_vars
 void		err_exit(const char *err, const char *msg);
 void		perror_exit(const char *str);
 void		free_split(char **split);
+void		free_all(t_vars *vars);
 
 // tab_utils.c
 void		free_map(t_map *tab);
@@ -115,5 +119,9 @@ int		update(t_vars *vars);
 // draw.c
 //void	bresenham(float x, float y, float x1, float y1, t_vars *vars);
 void	draw(t_vars *vars);
+
+// draw_utils.c
+int		get_color(t_vars *vars, int x, int y);
+void	img_pixel_put(t_vars *vars, int x, int y);
 
 #endif

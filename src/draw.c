@@ -14,8 +14,6 @@
 #include <mlx.h>
 #include <math.h>
 
-#include <stdio.h>
-
 void	isometric(float *x, float *y, int z, t_vars *vars)
 {
 	/**x = (*x - *y) * cos(0.8);
@@ -34,6 +32,8 @@ void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
 
 	z = vars->map->z_mt[(int)y][(int)x];
 	z1 = vars->map->z_mt[(int)y1][(int)x1];
+
+	vars->color = get_color(vars, x, y);
 
 	x *= vars->zoom;
 	y *= vars->zoom;
@@ -56,20 +56,15 @@ void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
 	x_step /= max;
 	y_step /= max;
 
-	vars->color = (z || z1) ? 0xff0000 : 0xffffff;
+	//vars->color = (z || z1) ? 0xff0000 : 0xffffff;
 
 	while ((int)(x - x1) || (int)(y - y1))
 	{
-		if (x > WIN_W || y > WIN_H || x < 0 || y < 0)
+		if (x >= WIN_W || y >= WIN_H || x < 0 || y < 0)
 			break ;
-		//vars->img->addr = mlx_get_data_addr(vars->img->img,
-		//	&vars->img->bpp, &vars->img->sz_l, &vars->img->endian);
-		//vars->color = mlx_get_color_value(vars->mlx, 0xff00ff);
-		//vars->color = mlx_get_color_value(vars->mlx, vars->map->clrs[y][x]);
-		mlx_pixel_put(vars->mlx, vars->win, x, y, vars->color);
+		img_pixel_put(vars, x, y);
 		x += x_step;
 		y += y_step;
-		//printf("x: %f, y: %f\n", x_step, y_step);
 	}
 }
 
@@ -90,4 +85,9 @@ void	draw(t_vars *vars)
 				bresenham(x, y, x, y + 1, vars);
 		}
 	}
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);
+	mlx_destroy_image(vars->mlx, vars->img->img);
+	vars->img->img = mlx_new_image(vars->mlx, WIN_W, WIN_H);
+	vars->img->addr = mlx_get_data_addr(vars->img->img,
+		&vars->img->bpp, &vars->img->sz_l, &vars->img->endian);
 }

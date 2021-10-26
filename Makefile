@@ -34,11 +34,20 @@ MAKE = make
 # COMPILER
 CC = gcc
 
-#CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
+CCFLAGS = -Wall -Wextra -Werror
+
+CCFLAGS += -D WIN_H=720 -D WIN_W=1280
+#CCFLAGS += -D WIN_H=1080 -D WIN_W=1920
+
+CFLAGS += -D BUFFER_SIZE=10
+#CFLAGS += -D BUFFER_SIZE=1000
+
 CFLAGS += -O3
+CCFLAGS += -O3
+
 #CFLAGS += -fsanitize=address -g3
-CFLAGS += -D WIN_H=720 -D WIN_W=1280
-#CFLAGS += -D WIN_H=1080 -D WIN_W=1920
+#CCFLAGS += -fsanitize=address -g3
 
 CFLAGS += -I ./$(LFT_DIR)/inc -I ./$(LMLX_DIR) -I ./inc
 
@@ -63,7 +72,7 @@ LMLX_DIR_MACOS_SIERRA = $(LIB_PATH)/mlx_macos_sierra
 # SOURCES
 SRC_FILES =		main.c			utils.c			map_utils.c			\
 				handle_args.c	mlx_main.c		mlx_hook.c			\
-				mlx_loop.c		draw.c
+				mlx_loop.c		draw.c			draw_utils.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 
@@ -82,7 +91,7 @@ endif
 ifeq ($(UNAME_S),Darwin)
 	CFLAGS += -D OSX
 #	########## SHARED VARS       ##########
-	CFLAGS += -framework OpenGL -framework AppKit
+	CCFLAGS += -framework OpenGL -framework AppKit
 	LDLIBS = -lft -lmlx
 #	########## mlx_mms           ##########
 	LMLX_NAME = $(LMLX_NAME_MMS)
@@ -97,7 +106,7 @@ endif
 all: $(NAME) $(CHECKER_NAME)
 
 $(NAME): $(LFT_NAME) $(LMLX_NAME) $(OBJ)
-	$(CC) $^ -o $@ $(CFLAGS) $(LDFLAGS) $(LDLIBS)
+	$(CC) $^ -o $@ $(CCFLAGS) $(LDFLAGS) $(LDLIBS)
 
 $(LFT_NAME):
 	$(MAKE) all -sC $(LFT_DIR)

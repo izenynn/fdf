@@ -15,6 +15,7 @@
 #include <libft/ft_char.h>
 #include <libft/ft_str.h>
 #include <libft/ft_nbr.h>
+#include <libft/ft_printf.h>
 #include <unistd.h>
 #include <fcntl.h>
 
@@ -23,7 +24,7 @@ static void	char_tolower(char *c)
 	*c = ft_tolower(*c);
 }
 
-static int	get_color(char *s)
+static int	parse_color(char *s)
 {
 	while (*s && (ft_isdigit(*s) || *s == '-' || *s == '+' || *s == ','))
 		s++;
@@ -32,6 +33,8 @@ static int	get_color(char *s)
 		ft_striter(s + 1, char_tolower);
 		return (ft_atoi_base(s + 1, LHEX));
 	}
+	else
+		return (0xffffff);
 	return (0);
 }
 
@@ -56,7 +59,7 @@ static void	fill_matrix(t_map *map, int fd)
 		while (++x < map->w)
 		{
 			map->z_mt[y][x] = ft_atoi(split[x]);
-			map->clrs[y][x] = get_color(split[x]);
+			map->clrs[y][x] = parse_color(split[x]);
 		}
 		free_split(split);
 		free(line);
@@ -83,6 +86,7 @@ void	handle_args(t_map **map, int ac, char **av)
 
 	if (ac != 2)
 		err_exit("Error", "Invalid arguments");
+	ft_printf("Reading map...\n");
 	file = av[1];
 	*map = initialise_map(file);
 	alloc_map(*map);
