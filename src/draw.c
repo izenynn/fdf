@@ -16,8 +16,6 @@
 
 void	isometric(float *x, float *y, int z, t_vars *vars)
 {
-	/**x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8) - z;*/
 	*x = (*x - *y) * cos(vars->rot);
 	*y = (*x + *y) * sin(vars->rot) - z;
 }
@@ -40,12 +38,13 @@ void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
 	x1 *= vars->zoom;
 	y1 *= vars->zoom;
 
+
 	isometric(&x, &y, z, vars);
 	isometric(&x1, &y1, z1, vars);
 
 	x += vars->shift_x;
-	y += vars->shift_y;
 	x1 += vars->shift_x;
+	y += vars->shift_y;
 	y1 += vars->shift_y;
 
 	x_step = x1 - x;

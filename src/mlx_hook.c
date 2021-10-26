@@ -29,13 +29,13 @@ int	key_hook(int keycode, t_vars *vars)
 	if (keycode == KEY_ESC)
 		close_win(vars);
 	if (keycode == KEY_W)
-		vars->shift_y -= SHIFT;
-	if (keycode == KEY_S)
 		vars->shift_y += SHIFT;
+	if (keycode == KEY_S)
+		vars->shift_y -= SHIFT;
 	if (keycode == KEY_A)
-		vars->shift_x -= SHIFT;
-	if (keycode == KEY_D)
 		vars->shift_x += SHIFT;
+	if (keycode == KEY_D)
+		vars->shift_x -= SHIFT;
 	if (keycode == KEY_Q)
 		vars->zoom -= ZOOM_SHIFT;
 	if (keycode == KEY_E)

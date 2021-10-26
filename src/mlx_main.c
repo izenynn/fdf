@@ -15,6 +15,9 @@
 #include <libft/ft_mem.h>
 #include <libft/ft_printf.h>
 #include <stdlib.h>
+#include <math.h>
+
+#define MAX(a,b) (a > b) ? a : b
 
 int	mlx_main(t_map *map)
 {
@@ -31,8 +34,10 @@ int	mlx_main(t_map *map)
 		&vars->img->bpp, &vars->img->sz_l, &vars->img->endian);
 	vars->win = mlx_new_window(vars->mlx, WIN_W, WIN_H, "fdf");
 	//
-	vars->zoom = 20;
+	vars->zoom = MAX((WIN_W / map->w / 2), (WIN_H / map->h / 2));
 	vars->rot = 0.8;
+	vars->shift_x = WIN_W / 2;
+	vars->shift_y = (WIN_H - map->h * vars->zoom) / 2;
 	//
 	mlx_hook(vars->win, 2, 1L<<0, key_hook, vars);
 	//mlx_key_hook(vars->win, key_hook, vars);
