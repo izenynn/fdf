@@ -132,6 +132,7 @@ void	free_split(char **split);
 void	free_vars(t_vars *vars);
 void	free_all(t_vars *vars);
 t_point	new_point(int x, int y, t_vars *vars);
+t_point	get_coords(t_vars *vars, t_point point);
 
 // error.c
 void	err_exit(const char *err, const char *msg);
@@ -161,8 +162,6 @@ int		initialise_vars(t_vars *vars, t_map *map);
 void	initialise_mlx(t_vars *vars);
 
 // draw.c
-void	draw_menu(t_vars *vars);
-//void	bresenham(float x, float y, float x1, float y1, t_vars *vars);
 void	draw(t_vars *vars);
 
 // draw_utils.c

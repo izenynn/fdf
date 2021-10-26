@@ -15,14 +15,12 @@
 #include <libft/ft_mem.h>
 #include <libft/ft_printf.h>
 #include <stdlib.h>
-#include <math.h>
 
 int	mlx_main(t_map *map)
 {
 	t_vars	*vars;
 
 	ft_printf("Starting minilibx...\n");
-
 	vars = (t_vars *)ft_calloc(1, sizeof(t_vars));
 	if (!vars)
 		err_exit("Error", MAL_ERROR);
@@ -31,20 +29,11 @@ int	mlx_main(t_map *map)
 		free_all(vars);
 		err_exit("Error", MAL_ERROR);
 	}
-	//
 	initialise_mlx(vars);
-	//
-	mlx_hook(vars->win, 2, 1L<<0, key_hook, vars);
-	mlx_hook(vars->win, 17, 1L<<17, close_win, vars);
-	//mlx_key_hook(vars->win, key_hook, vars);
-	//
-	//mlx_loop_hook(vars->mlx, update, vars);
+	mlx_hook(vars->win, 2, 1L << 0, key_hook, vars);
+	mlx_hook(vars->win, 17, 1L << 17, close_win, vars);
 	draw(vars);
 	mlx_loop(vars->mlx);
-	//
-	//free(vars->map);
-	//free(vars->img); // mlx_destroy_img(vars->img);
-	//free(vars);
 	free_all(vars);
 	return (EXIT_SUCCESS);
 }

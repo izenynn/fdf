@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include <fdf.h>
-#include <mlx.h>
-#include <libft/ft_printf.h>
-#include <unistd.h>
 #include <stdlib.h>
 
 int	close_win(t_vars *vars)
@@ -25,7 +22,6 @@ int	close_win(t_vars *vars)
 
 int	key_hook(int keycode, t_vars *vars)
 {
-	ft_printf("Keycode: %3d\n", keycode);
 	if (keycode == KEY_ESC)
 		close_win(vars);
 	if (keycode == KEY_R)

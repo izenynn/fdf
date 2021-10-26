@@ -11,40 +11,12 @@
 /* ************************************************************************** */
 
 #include <fdf.h>
-#include <unistd.h>
 #include <stdlib.h>
-#include <libft/ft_printf.h>
-
-// TESTS
-/*static void	print_map(t_map *map)
-{
-		printf("========== MESH ==========\n");
-	for (int i = 0; i < map->h; i++) {
-		for (int j = 0; j < map->w; j++) {
-			printf("%3d ", map->z_mt[i][j]);
-		}
-		printf("\n");
-	}
-	printf("========== CLRS ==========\n");
-	for (int i = 0; i < map->h; i++) {
-		for (int j = 0; j < map->w; j++) {
-			printf("%#9x ", map->clrs[i][j]);
-		}
-		printf("\n");
-	}
-}*/
-//
-
-/*void	show_leaks(void)
-{
-	system("leaks -q fdf");
-}*/
 
 int	main(int ac, char **av)
 {
 	t_map	*map;
 
-	//atexit(show_leaks);
 	map = NULL;
 	handle_args(&map, ac, av);
 	mlx_main(map);

@@ -46,8 +46,8 @@ CFLAGS += -D BUFFER_SIZE=10
 CFLAGS += -O3
 CCFLAGS += -O3
 
-CFLAGS += -fsanitize=address -g3
-CCFLAGS += -fsanitize=address -g3
+#CFLAGS += -fsanitize=address -g3
+#CCFLAGS += -fsanitize=address -g3
 
 CFLAGS += -I ./$(LFT_DIR)/inc -I ./$(LMLX_DIR) -I ./inc
 
@@ -72,9 +72,8 @@ LMLX_DIR_MACOS_SIERRA = $(LIB_PATH)/mlx_macos_sierra
 # SOURCES
 SRC_FILES =		main.c			utils.c			map_utils.c			\
 				handle_args.c	mlx_main.c		mlx_hook.c			\
-				mlx_loop.c		draw.c			draw_utils.c		\
-				controls.c		mlx_utils.c		color.c				\
-				error.c
+				draw.c			draw_utils.c	controls.c			\
+				mlx_utils.c		color.c			error.c
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 

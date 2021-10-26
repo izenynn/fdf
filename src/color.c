@@ -50,15 +50,3 @@ int	get_color(t_point current, t_point start, t_point end, t_point delta)
 	b = get_light(start.color & 0xFF, end.color & 0xFF, percentage);
 	return ((r << 16) | (g << 8) | b);
 }
-
-/*int	get_color(t_vars *vars, t_point cur, t_point start, t_point end,
-	t_point delta)
-{
-	int	color;
-
-	cur.color = vars->map->clrs[cur.y][cur.x];
-	start.color = vars->map->clrs[start.y][start.x];
-	end.color = vars->map->clrs[end.y][end.x];
-	color = calc_color(cur, start, end, delta);
-	return (mlx_get_color_value(vars->mlx, color));
-}*/

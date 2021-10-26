@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <libft/ft_printf.h>
-#include <stdlib.h>
 #include <stdio.h>
 
 void	err_exit(const char *err, const char *msg)

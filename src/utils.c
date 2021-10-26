@@ -30,7 +30,6 @@ void	free_vars(t_vars *vars)
 	if (vars->img)
 		free(vars->img);
 	free(vars);
-
 }
 
 void	free_all(t_vars *vars)
@@ -49,4 +48,18 @@ t_point	new_point(int x, int y, t_vars *vars)
 	out.z = vars->map->z_mt[y][x];
 	out.color = vars->map->clrs[y][x];
 	return (out);
+}
+
+t_point	get_coords(t_vars *vars, t_point point)
+{
+	point.x *= vars->zoom;
+	point.y *= vars->zoom;
+	point.z *= (vars->zoom / 10) * vars->flat;
+	rot_x(vars, &point.y, &point.z);
+	rot_y(vars, &point.x, &point.z);
+	rot_z(vars, &point.x, &point.y);
+	isometric(vars, &point.x, &point.y, point.z);
+	point.x += vars->shift_x;
+	point.y += vars->shift_y;
+	return (point);
 }
