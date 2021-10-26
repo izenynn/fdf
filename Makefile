@@ -94,11 +94,11 @@ ifeq ($(UNAME_S),Darwin)
 	CCFLAGS += -framework OpenGL -framework AppKit
 	LDLIBS = -lft -lmlx
 #	########## mlx_mms           ##########
-	LMLX_NAME = $(LMLX_NAME_MMS)
-	LMLX_DIR = $(LMLX_DIR_MMS)
+#	LMLX_NAME = $(LMLX_NAME_MMS)
+#	LMLX_DIR = $(LMLX_DIR_MMS)
 #	########## mlx_macos_sierra  ##########
-#	LMLX_NAME = $(LMLX_NAME_MACOS_SIERRA)
-#	LMLX_DIR = $(LMLX_DIR_MACOS_SIERRA)
+	LMLX_NAME = $(LMLX_NAME_MACOS_SIERRA)
+	LMLX_DIR = $(LMLX_DIR_MACOS_SIERRA)
 endif
 
 .PHONY: all bonus clean fclean re norm

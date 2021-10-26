@@ -34,7 +34,7 @@ static int	parse_color(char *s)
 		return (ft_atoi_base(s + 1, LHEX));
 	}
 	else
-		return (0xffffff);
+		return (WHITE);
 	return (0);
 }
 

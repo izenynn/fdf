@@ -36,6 +36,8 @@
 
 # define LHEX "0123456789abcdef"
 
+# define WHITE 0xFFFFFF
+
 # ifdef OSX
 #  define KEY_ESC 53
 #  define KEY_UP 126
@@ -94,7 +96,7 @@ typedef struct s_vars
 	int		shift_x;
 	int		shift_y;
 	float	rot;
-	float		zoom;
+	float	zoom;
 	int		iso;
 }	t_vars;
 
@@ -116,12 +118,14 @@ void	handle_args(t_map **map, int ac, char **av);
 int		mlx_main(t_map *map);
 
 // mlx_hook.c
+int		close_win(t_vars *vars);
 int		key_hook(int keycode, t_vars *vars);
 
 // mlx_loop.c
 int		update(t_vars *vars);
 
 // draw.c
+void	draw_menu(t_vars *vars);
 //void	bresenham(float x, float y, float x1, float y1, t_vars *vars);
 void	draw(t_vars *vars);
 

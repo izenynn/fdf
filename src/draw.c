@@ -15,6 +15,24 @@
 #include <mlx.h>
 #include <math.h>
 
+void	draw_menu(t_vars *vars)
+{
+	int		y;
+	void	*mlx;
+	void	*win;
+
+	mlx = vars->mlx;
+	win = vars->win;
+	y = 0;
+	mlx_string_put(mlx, win, 15, y += 20, WHITE, "Controls:");
+	mlx_string_put(mlx, win, 15, y += 50, WHITE, "Move: W, A, S, D");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Zoom: Q / E");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Rotate: Arrows");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Perspective:");
+	mlx_string_put(mlx, win, 30, y += 25, WHITE, "- Isometric: I");
+	mlx_string_put(mlx, win, 30, y += 25, WHITE, "- Parallel: P");
+}
+
 void	isometric(float *x, float *y, int z, t_vars *vars)
 {
 	if (!vars->iso)
@@ -92,6 +110,7 @@ void	draw(t_vars *vars)
 		}
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);
+	draw_menu(vars);
 	//mlx_destroy_image(vars->mlx, vars->img->img);
 	//vars->img->img = mlx_new_image(vars->mlx, WIN_W, WIN_H);
 	//vars->img->addr = mlx_get_data_addr(vars->img->img,

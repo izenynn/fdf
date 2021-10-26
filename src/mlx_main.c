@@ -41,6 +41,7 @@ int	mlx_main(t_map *map)
 	vars->iso = 1;
 	//
 	mlx_hook(vars->win, 2, 1L<<0, key_hook, vars);
+	mlx_hook(vars->win, 17, 1L<<17, close_win, vars);
 	//mlx_key_hook(vars->win, key_hook, vars);
 	//
 	//mlx_loop_hook(vars->mlx, update, vars);

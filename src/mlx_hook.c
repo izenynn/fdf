@@ -17,10 +17,11 @@
 
 #include <stdio.h>
 
-static void	close_win(t_vars *vars)
+int	close_win(t_vars *vars)
 {
 	free_all(vars);
 	exit (EXIT_SUCCESS);
+	return (0);
 }
 
 int	key_hook(int keycode, t_vars *vars)
