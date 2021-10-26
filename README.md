@@ -17,7 +17,7 @@ Wireframe rasterizer.
 
 ## How to use
 
-### Clone the repo and submodules
+### Clone repo and submodules
 
 ```sh
 git clone --recurse-submodules https://github.com/izenynn/fdf.git
