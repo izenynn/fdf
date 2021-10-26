@@ -10,10 +10,10 @@ Wireframe rasterizer.
 
 ## Screenshots
 
-![map t2.fdf screenshot](https://github.com/izenynn/push_swap/blob/main/screenshots/01-t2.png)
-![map elem-col.fdf screenshot](https://github.com/izenynn/push_swap/blob/main/screenshots/02-elem-col.png)
-![map julia.fdf screenshot](https://github.com/izenynn/push_swap/blob/main/screenshots/03-julia.png)
-![map elem-fract.fdf screenshot](https://github.com/izenynn/push_swap/blob/main/screenshots/04-elem-fract.png)
+![map t2.fdf screenshot](https://github.com/izenynn/fdf/blob/main/screenshots/01-t2.png)
+![map elem-col.fdf screenshot](https://github.com/izenynn/fdf/blob/main/screenshots/02-elem-col.png)
+![map julia.fdf screenshot](https://github.com/izenynn/fdf/blob/main/screenshots/03-julia.png)
+![map elem-fract.fdf screenshot](https://github.com/izenynn/fdf/blob/main/screenshots/04-elem-fract.png)
 
 ## How to use
 
