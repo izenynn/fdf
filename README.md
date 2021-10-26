@@ -45,7 +45,7 @@ make
 
 ### MAC OS alternative version
 
-If you have any issues on MAC, an alternative minilibx is included to compile, just uncomment the lines 98 and 99, and comment lines 101 and 102 :)
+If you have any issues on MAC OS, an alternative minilibx is included in the repo, just uncomment the lines 98 and 99, and comment lines 101 and 102 of the `Makefile` :)
 
 - Before
 
