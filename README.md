@@ -6,7 +6,7 @@ Wireframe rasterizer.
 
 - Status: finished
 - Result: n/a
-- Observations: you can transform (move), zoom and rotate the wireframe :D
+- Observations: you can zoom, translate (move) and rotate the wireframe :D
 
 ## Screenshots
 
