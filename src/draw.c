@@ -24,17 +24,21 @@ void	draw_menu(t_vars *vars)
 	mlx = vars->mlx;
 	win = vars->win;
 	y = 0;
-	mlx_string_put(mlx, win, 15, y += 20, WHITE, "Controls:");
-	mlx_string_put(mlx, win, 15, y += 50, WHITE, "Move: W, A, S, D");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Zoom: Q / E");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Flattening: - / +");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Rotate: Arrows");
+	mlx_string_put(mlx, win, 15, y += 15, WHITE, "Controls:");
+	mlx_string_put(mlx, win, 15, y += 50, WHITE, "Reset: R");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Move: W, A, S, D");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Zoom: Arrows");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Flattening: + / -");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Rotate:");
+	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  x (+ / -): U / J");
+	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  y (+ / -): I / K");
+	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  z (+ / -): O / L");
 	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Perspective:");
-	mlx_string_put(mlx, win, 30, y += 25, WHITE, "- Isometric: I");
-	mlx_string_put(mlx, win, 30, y += 25, WHITE, "- Parallel: P");
+	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  Isometric: I");
+	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  Parallel: P");
 }
 
-void	isometric(float *x, float *y, int z, t_vars *vars)
+void	isometric(float *x, float *y, float z, t_vars *vars)
 {
 	int	prev_x;
 	int	prev_y;
@@ -54,8 +58,8 @@ void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
 	float	x_step;
 	float	y_step;
 	int		max;
-	int		z;
-	int		z1;
+	float	z;
+	float	z1;
 
 	z = vars->map->z_mt[(int)y][(int)x];
 	z1 = vars->map->z_mt[(int)y1][(int)x1];
@@ -69,6 +73,13 @@ void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
 
 	z *= (vars->zoom / 10) * vars->flat;
 	z1 *= (vars->zoom / 10) * vars->flat;
+
+	rot_x(vars, &y, &z);
+	rot_x(vars, &y1, &z1);
+	rot_y(vars, &x, &z);
+	rot_y(vars, &x1, &z1);
+	rot_z(vars, &x, &y);
+	rot_z(vars, &x1, &y1);
 
 	isometric(&x, &y, z, vars);
 	isometric(&x1, &y1, z1, vars);

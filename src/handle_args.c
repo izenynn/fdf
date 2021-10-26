@@ -53,7 +53,7 @@ static void	fill_matrix(t_map *map, int fd)
 		if (!split)
 		{
 			free_map(map);
-			err_exit("Error", "memory allocation failed");
+			err_exit("Error", MAL_ERROR);
 		}
 		x = -1;
 		while (++x < map->w)

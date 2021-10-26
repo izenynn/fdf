@@ -60,7 +60,7 @@ static int	cnt_nbrs(t_map *map, char *line, char *file)
 	if (!split)
 	{
 		free_map(map);
-		err_exit("Error", "memory allocation failed");
+		err_exit("Error", MAL_ERROR);
 	}
 	cnt = 0;
 	while (split[cnt])
@@ -78,7 +78,7 @@ void	alloc_map(t_map *map)
 	if (!map->z_mt || !map->clrs)
 	{
 		free_map(map);
-		err_exit("Error", "memory allocation failed");
+		err_exit("Error", MAL_ERROR);
 	}
 	i = -1;
 	while (++i < map->h)
@@ -88,7 +88,7 @@ void	alloc_map(t_map *map)
 		if (!map->z_mt[i] || !map->clrs[i])
 		{
 			free_map(map);
-			err_exit("Error", "memory allocation failed");
+			err_exit("Error", MAL_ERROR);
 		}
 	}
 }

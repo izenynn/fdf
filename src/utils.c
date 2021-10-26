@@ -41,11 +41,18 @@ void	free_split(char **split)
 	free(split);
 }
 
+void	free_vars(t_vars *vars)
+{
+	free_map(vars->map);
+	if (vars->img)
+		free(vars->img);
+	free(vars);
+
+}
+
 void	free_all(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->win);
 	mlx_destroy_image(vars->mlx, vars->img->img);
-	free_map(vars->map);
-	free(vars->img);
-	free(vars);
+	free_vars(vars);
 }

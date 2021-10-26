@@ -12,12 +12,33 @@
 
 #include <fdf.h>
 #include <mlx.h>
+#include <math.h>
 
-#include <stdio.h>
-
-int		get_color(t_vars *vars, int x, int y)
+void	rot_x(t_vars *vars, float *y, float *z)
 {
-	return (mlx_get_color_value(vars->mlx, vars->map->clrs[y][x]));
+	float	prev_y;
+
+	prev_y = *y;
+	*y = (prev_y * cos(vars->rot_x)) + (*z * sin(vars->rot_x));
+	*z = (-prev_y * sin(vars->rot_x)) + (*z * cos(vars->rot_x));
+}
+
+void	rot_y(t_vars *vars, float *x, float *z)
+{
+	float	prev_x;
+
+	prev_x = *x;
+	*x = (*x * cos(vars->rot_y)) + (*z * sin(vars->rot_y));
+	*z = (-prev_x * sin(vars->rot_y)) + (*z * cos(vars->rot_y));
+}
+
+void	rot_z(t_vars *vars, float *x, float *y)
+{
+	float	prev_x;
+
+	prev_x = *x;
+	*x = (*x * cos(vars->rot_z)) - (*y * sin(vars->rot_z));
+	*y = (prev_x * sin(vars->rot_z)) + (*y * cos(vars->rot_z));
 }
 
 void	img_pixel_put(t_vars *vars, int x, int y)

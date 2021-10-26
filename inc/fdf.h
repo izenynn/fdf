@@ -28,12 +28,13 @@
 #  define SHIFT 10
 # endif
 # ifndef ROT_SHIFT
-#  define ROT_SHIFT 0.5
+#  define ROT_SHIFT 0.05
 # endif
 # ifndef ZOOM_SHIFT
 #  define ZOOM_SHIFT 0.5
 # endif
 
+# define MAL_ERROR "memory allocation failed"
 # define LHEX "0123456789abcdef"
 
 # define WHITE 0xFFFFFF
@@ -48,12 +49,17 @@
 #  define KEY_S 1
 #  define KEY_A 0
 #  define KEY_D 2
-#  define KEY_Q 12
-#  define KEY_E 14
 #  define KEY_I 34
 #  define KEY_P 35
 #  define KEY_MINUS 27
 #  define KEY_PLUS 24
+#  define KEY_R 15
+#  define KEY_U 32
+#  define KEY_J 38
+#  define KEY_I 34
+#  define KEY_K 40
+#  define KEY_O 31
+#  define KEY_L 37
 # elif LINUX
 #  define KEY_ESC 65307
 #  define KEY_UP 65362
@@ -64,12 +70,17 @@
 #  define KEY_S 115
 #  define KEY_A 97
 #  define KEY_D 100
-#  define KEY_Q 113
-#  define KEY_E 101
 //#  define KEY_I ?
 //#  define KEY_P ?
 //#  define KEY_MINUS ?
 //#  define KEY_PLUS ?
+//#  define KEY_R ?
+//#  define KEY_U ?
+//#  define KEY_J ?
+//#  define KEY_I ?
+//#  define KEY_K ?
+//#  define KEY_O ?
+//#  define KEY_L ?
 # endif
 
 // structs
@@ -108,16 +119,25 @@ typedef struct s_vars
 	float	rot_z;
 }	t_vars;
 
+typedef struct s_point
+{
+	float	x;
+	float	y;
+	float	z;
+	int		color;
+}	t_point;
+
 // utils.c
-void		err_exit(const char *err, const char *msg);
-void		perror_exit(const char *str);
-void		free_split(char **split);
-void		free_all(t_vars *vars);
+void	err_exit(const char *err, const char *msg);
+void	perror_exit(const char *str);
+void	free_split(char **split);
+void	free_vars(t_vars *vars);
+void	free_all(t_vars *vars);
 
 // tab_utils.c
-void		free_map(t_map *tab);
-void		alloc_map(t_map *map);
-t_map		*initialise_map(char *file);
+void	free_map(t_map *tab);
+void	alloc_map(t_map *map);
+t_map	*initialise_map(char *file);
 
 // parse_map.c
 void	handle_args(t_map **map, int ac, char **av);
@@ -132,12 +152,20 @@ int		key_hook(int keycode, t_vars *vars);
 // mlx_loop.c
 int		update(t_vars *vars);
 
+// mlx_utils.c
+void	reset_vars(t_vars *vars);
+int		initialise_vars(t_vars *vars, t_map *map);
+void	initialise_mlx(t_vars *vars);
+
 // draw.c
 void	draw_menu(t_vars *vars);
 //void	bresenham(float x, float y, float x1, float y1, t_vars *vars);
 void	draw(t_vars *vars);
 
 // draw_utils.c
+void	rot_x(t_vars *vars, float *y, float *z);
+void	rot_y(t_vars *vars, float *x, float *z);
+void	rot_z(t_vars *vars, float *x, float *y);
 int		get_color(t_vars *vars, int x, int y);
 void	img_pixel_put(t_vars *vars, int x, int y);
 

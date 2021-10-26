@@ -15,12 +15,12 @@
 
 void	handle_zoom(int keycode, t_vars *vars)
 {
-	if (keycode == KEY_Q)
+	if (keycode == KEY_DOWN)
 	{
 		if (vars->zoom > 0)
 			vars->zoom -= ZOOM_SHIFT;
 	}
-	if (keycode == KEY_E)
+	if (keycode == KEY_UP)
 	{
 		if (vars->zoom < INT_MAX)
 			vars->zoom += ZOOM_SHIFT;
@@ -55,16 +55,16 @@ void	handle_flattening(int keycode, t_vars *vars)
 
 void	handle_rot(int keycode, t_vars *vars)
 {
-	//
-	if (vars)
-		return ;
-	//
-	if (keycode == KEY_UP)
-		;
-	if (keycode == KEY_DOWN)
-		;
-	if (keycode == KEY_LEFT)
-		;
-	if (keycode == KEY_RIGHT)
-		;
+	if (keycode == KEY_U)
+		vars->rot_x += ROT_SHIFT;
+	if (keycode == KEY_J)
+		vars->rot_x -= ROT_SHIFT;
+	if (keycode == KEY_I)
+		vars->rot_y += ROT_SHIFT;
+	if (keycode == KEY_K)
+		vars->rot_y -= ROT_SHIFT;
+	if (keycode == KEY_O)
+		vars->rot_z += ROT_SHIFT;
+	if (keycode == KEY_L)
+		vars->rot_z -= ROT_SHIFT;
 }
