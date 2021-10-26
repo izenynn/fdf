@@ -102,7 +102,7 @@ ifeq ($(UNAME_S),Darwin)
 	LMLX_DIR = $(LMLX_DIR_MACOS_SIERRA)
 endif
 
-.PHONY: all bonus clean fclean re norm
+.PHONY: all clean fclean re norm
 
 all: $(NAME) $(CHECKER_NAME)
 
