@@ -36,10 +36,13 @@ int	key_hook(int keycode, t_vars *vars)
 		handle_rot(keycode, vars);
 	if (keycode == KEY_MINUS || keycode == KEY_PLUS)
 		handle_flattening(keycode, vars);
-	if (keycode == KEY_I)
-		vars->iso = 1;
 	if (keycode == KEY_P)
-		vars->iso = 0;
+	{
+		if (vars->iso)
+			vars->iso = 0;
+		else
+			vars->iso = 1;
+	}
 	draw(vars);
 	return (0);
 }

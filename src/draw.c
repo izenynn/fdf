@@ -33,9 +33,8 @@ static void	draw_menu(t_vars *vars)
 	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  x (+ / -): U / J");
 	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  y (+ / -): I / K");
 	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  z (+ / -): O / L");
-	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Perspective:");
-	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  Isometric: I");
-	mlx_string_put(mlx, win, 30, y += 25, WHITE, "  Parallel: P");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "Toggle Perspective: P");
+	mlx_string_put(mlx, win, 15, y += 25, WHITE, "(Isometric and Parallel)");
 }
 
 static int	ft_abs(int a)
