@@ -17,6 +17,8 @@
 
 void	isometric(float *x, float *y, int z, t_vars *vars)
 {
+	if (!vars->iso)
+		return ;
 	*x = (*x - *y) * cos(vars->rot);
 	*y = (*x + *y) * sin(vars->rot) - z;
 }
@@ -74,16 +76,19 @@ void	draw(t_vars *vars)
 	int	y;
 
 	ft_bzero(vars->img->addr, WIN_H * WIN_W * (vars->img->bpp / 8));
-	y = -1;
-	while (++y < vars->map->h)
+	if (vars->zoom)
 	{
-		x = -1;
-		while (++x < vars->map->w)
+		y = -1;
+		while (++y < vars->map->h)
 		{
-			if (x < vars->map->w - 1)
-				bresenham(x, y, x + 1, y, vars);
-			if (y < vars->map->h - 1)
-				bresenham(x, y, x, y + 1, vars);
+			x = -1;
+			while (++x < vars->map->w)
+			{
+				if (x < vars->map->w - 1)
+					bresenham(x, y, x + 1, y, vars);
+				if (y < vars->map->h - 1)
+					bresenham(x, y, x, y + 1, vars);
+			}
 		}
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img->img, 0, 0);

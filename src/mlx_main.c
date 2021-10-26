@@ -38,6 +38,7 @@ int	mlx_main(t_map *map)
 	vars->rot = 0.8;
 	vars->shift_x = WIN_W / 2;
 	vars->shift_y = (WIN_H - map->h * vars->zoom) / 2;
+	vars->iso = 1;
 	//
 	mlx_hook(vars->win, 2, 1L<<0, key_hook, vars);
 	//mlx_key_hook(vars->win, key_hook, vars);

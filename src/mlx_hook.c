@@ -37,13 +37,20 @@ int	key_hook(int keycode, t_vars *vars)
 	if (keycode == KEY_D)
 		vars->shift_x -= SHIFT;
 	if (keycode == KEY_Q)
-		vars->zoom -= ZOOM_SHIFT;
+	{
+		if (vars->zoom > 0)
+			vars->zoom -= ZOOM_SHIFT;
+	}
 	if (keycode == KEY_E)
 		vars->zoom += ZOOM_SHIFT;
 	if (keycode == KEY_UP)
 		vars->rot += ROT_SHIFT;
 	if (keycode == KEY_DOWN)
 		vars->rot -= ROT_SHIFT;
+	if (keycode == KEY_I)
+		vars->iso = 1;
+	if (keycode == KEY_P)
+		vars->iso = 0;
 	//mlx_clear_window(vars->mlx, vars->win);
 	draw(vars);
 	//mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);

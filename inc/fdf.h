@@ -31,7 +31,7 @@
 #  define ROT_SHIFT 0.25
 # endif
 # ifndef ZOOM_SHIFT
-#  define ZOOM_SHIFT 1;
+#  define ZOOM_SHIFT 0.5;
 # endif
 
 # define LHEX "0123456789abcdef"
@@ -48,6 +48,8 @@
 #  define KEY_D 2
 #  define KEY_Q 12
 #  define KEY_E 14
+#  define KEY_I 34
+#  define KEY_P 35
 # elif LINUX
 #  define KEY_ESC 65307
 #  define KEY_UP 65362
@@ -60,6 +62,8 @@
 #  define KEY_D 100
 #  define KEY_Q 113
 #  define KEY_E 101
+//#  define KEY_I ?
+//#  define KEY_P ?
 # endif
 
 // structs
@@ -90,7 +94,8 @@ typedef struct s_vars
 	int		shift_x;
 	int		shift_y;
 	float	rot;
-	int		zoom;
+	float		zoom;
+	int		iso;
 }	t_vars;
 
 // utils.c
