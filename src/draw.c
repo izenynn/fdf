@@ -35,10 +35,17 @@ void	draw_menu(t_vars *vars)
 
 void	isometric(float *x, float *y, int z, t_vars *vars)
 {
+	int	prev_x;
+	int	prev_y;
+
 	if (!vars->iso)
 		return ;
-	*x = (*x - *y) * cos(vars->rot);
-	*y = (*x + *y) * sin(vars->rot) - z;
+	/**x = (*x - *y) * cos(0.8);
+	*y = (*x + *y) * sin(0.8) - z;*/
+	prev_x = *x;
+	prev_y = *y;
+	*x = (prev_x - prev_y) * cos(0.523599);
+	*y = -z + (prev_x + prev_y) * sin(0.523599);
 }
 
 void	bresenham(float x, float y, float x1, float y1, t_vars *vars)
