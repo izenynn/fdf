@@ -2,11 +2,15 @@
 
 ## Info
 
-...
+Wireframe rasterizer.
 
-- Status: on development
+- Status: finished
 - Result: n/a
-- Observations: n/a
+- Observations: you can transform (move), zoom and rotate the wireframe :D
+
+## Screenshots
+
+TODO add screenshots
 
 ## How to use
 
@@ -20,14 +24,14 @@ sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-d
 
 ### Change window resolution
 
-- TODO explain how to change the window resolution on makefile
+Open the `Makefile`, go to line 40 and change WIN_H value to you desire windows height, and WIN_W value to the window width :)
 
 ### Compile
 
-- Just run `make` or `make bonus` (bonus include transform, zoom and rotation)
+- Just run `make`
 
 ```sh
-make bonus
+make
 ```
 
 - Run `./fdf` with a map as an argument (test maps on the `test_maps` folder)
@@ -38,7 +42,41 @@ make bonus
 
 ### MAC OS alternative version
 
-- TODO explain how to compile an alternative mlx for mac
+If you have any issues on MAC, an alternative minilibx is included to compile, just uncomment the lines 98 and 99, and comment lines 101 and 102 :)
+
+- Before
+
+```make
+ifeq ($(UNAME_S),Darwin)
+	CFLAGS += -D OSX
+#	########## SHARED VARS       ##########
+	CCFLAGS += -framework OpenGL -framework AppKit
+	LDLIBS = -lft -lmlx
+#	########## mlx_mms           ##########
+#	LMLX_NAME = $(LMLX_NAME_MMS)
+#	LMLX_DIR = $(LMLX_DIR_MMS)
+#	########## mlx_macos_sierra  ##########
+	LMLX_NAME = $(LMLX_NAME_MACOS_SIERRA)
+	LMLX_DIR = $(LMLX_DIR_MACOS_SIERRA)
+endif
+```
+
+- After
+
+```make
+ifeq ($(UNAME_S),Darwin)
+	CFLAGS += -D OSX
+#	########## SHARED VARS       ##########
+	CCFLAGS += -framework OpenGL -framework AppKit
+	LDLIBS = -lft -lmlx
+#	########## mlx_mms           ##########
+	LMLX_NAME = $(LMLX_NAME_MMS)
+	LMLX_DIR = $(LMLX_DIR_MMS)
+#	########## mlx_macos_sierra  ##########
+#	LMLX_NAME = $(LMLX_NAME_MACOS_SIERRA)
+#	LMLX_DIR = $(LMLX_DIR_MACOS_SIERRA)
+endif
+```
 
 ##
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
