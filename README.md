@@ -106,15 +106,15 @@ endif
 
 Minilibx documentation:
 
-- [documentation](https://qst0.github.io/ft_libgfx/man_mlx.html)(by [qst0](https://github.com/qst0))]
+- [documentation](https://qst0.github.io/ft_libgfx/man_mlx.html) (by [qst0](https://github.com/qst0))]
 
-- [documentation and guide](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html)(by [harm-smits](https://github.com/harm-smits))
+- [documentation and guide](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html) (by [harm-smits](https://github.com/harm-smits))
 
-- [minilibx images guide](https://gontjarow.github.io/MiniLibX/mlx-tutorial-create-image.html)(by [Gontjarow](https://github.com/Gontjarow))
+- [minilibx images guide](https://gontjarow.github.io/MiniLibX/mlx-tutorial-create-image.html) (by [Gontjarow](https://github.com/Gontjarow))
 
-- [minilibx images examples](https://github.com/keuhdall/images_example)(by [keuhdall](https://github.com/keuhdall))
+- [minilibx images examples](https://github.com/keuhdall/images_example) (by [keuhdall](https://github.com/keuhdall))
 
-- [fdf mini wiki](https://github.com/VBrazhnik/FdF/wiki)(by [VBrazhnik](https://github.com/VBrazhnik/FdF/wiki))
+- [fdf mini wiki](https://github.com/VBrazhnik/FdF/wiki) (by [VBrazhnik](https://github.com/VBrazhnik/FdF/wiki))
 
 Minilibx for linux:
 
