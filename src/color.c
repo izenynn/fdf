@@ -50,3 +50,20 @@ int	get_color(t_point current, t_point start, t_point end, t_point delta)
 	b = get_light(start.color & 0xFF, end.color & 0xFF, percentage);
 	return ((r << 16) | (g << 8) | b);
 }
+
+int	get_z_color(t_vars *vars, int cur_z)
+{
+	double	percentage;
+
+	percentage = percent(vars->map->min_z, vars->map->max_z, cur_z);
+	if (percentage < 0.2)
+		return (0x581845);
+	else if (percentage < 0.4)
+		return (0x900c3f);
+	else if (percentage < 0.6)
+		return (0xc70039);
+	else if (percentage < 0.8)
+		return (0xff5733);
+	else
+		return (0xffc30f);
+}

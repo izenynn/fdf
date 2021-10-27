@@ -23,12 +23,13 @@ static void	char_tolower(char *c)
 	*c = ft_tolower(*c);
 }
 
-static int	parse_color(char *s)
+static int	parse_color(t_map *map, char *s)
 {
 	while (*s && (ft_isdigit(*s) || *s == '-' || *s == '+' || *s == ','))
 		s++;
 	if (*s && *s == 'x')
 	{
+		map->iscolor = 1;
 		ft_striter(s + 1, char_tolower);
 		return (ft_atoi_base(s + 1, LHEX));
 	}
@@ -58,7 +59,7 @@ static void	fill_matrix(t_map *map, int fd)
 		while (++x < map->w)
 		{
 			map->z_mt[y][x] = ft_atoi(split[x]);
-			map->clrs[y][x] = parse_color(split[x]);
+			map->clrs[y][x] = parse_color(map, split[x]);
 		}
 		free_split(split);
 		free(line);
@@ -90,4 +91,5 @@ void	handle_args(t_map **map, int ac, char **av)
 	*map = initialise_map(file);
 	alloc_map(*map);
 	parse_file(*map, file);
+	get_min_max_z(*map);
 }

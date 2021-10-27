@@ -142,3 +142,4 @@ norm:
 	@norminette $(LFT_DIR)
 	@printf "\n${GRN}FDF:${BLU}\n\n"
 	@norminette $(SRC_PATH)
+	@printf "${NOCOL}"

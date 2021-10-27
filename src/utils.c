@@ -46,7 +46,10 @@ t_point	new_point(int x, int y, t_vars *vars)
 	out.x = x;
 	out.y = y;
 	out.z = vars->map->z_mt[y][x];
-	out.color = vars->map->clrs[y][x];
+	if (vars->map->iscolor)
+		out.color = vars->map->clrs[y][x];
+	else
+		out.color = get_z_color(vars, out.z);
 	return (out);
 }
 

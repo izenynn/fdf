@@ -88,6 +88,9 @@ typedef struct s_map
 	int	h;
 	int	**z_mt;
 	int	**clrs;
+	int	iscolor;
+	int	min_z;
+	int	max_z;
 }	t_map;
 
 typedef struct s_img
@@ -105,7 +108,6 @@ typedef struct s_vars
 	void	*win;
 	t_map	*map;
 	t_img	*img;
-	int		color;
 	int		shift_x;
 	int		shift_y;
 	float	rot;
@@ -136,12 +138,13 @@ t_point	get_coords(t_vars *vars, t_point point);
 void	err_exit(const char *err, const char *msg);
 void	perror_exit(const char *str);
 
-// tab_utils.c
+// map_utils.c
+void	get_min_max_z(t_map *map);
 void	free_map(t_map *tab);
 void	alloc_map(t_map *map);
 t_map	*initialise_map(char *file);
 
-// parse_map.c
+// handle_args.c
 void	handle_args(t_map **map, int ac, char **av);
 
 // mlx_main.c
@@ -177,5 +180,6 @@ void	handle_flattening(int keycode, t_vars *vars);
 
 // color.c
 int	get_color(t_point current, t_point start, t_point end, t_point delta);
+int	get_z_color(t_vars *vars, int cur_z);
 
 #endif

@@ -17,6 +17,25 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
+void	get_min_max_z(t_map *map)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < map->h)
+	{
+		x = -1;
+		while (++x < map->w)
+		{
+			if (map->z_mt[y][x] < map->min_z)
+				map->min_z = map->z_mt[y][x];
+			else if (map->z_mt[y][x] > map->max_z)
+				map->max_z = map->z_mt[y][x];
+		}
+	}
+}
+
 void	free_map(t_map *map)
 {
 	int	i;
@@ -46,29 +65,6 @@ void	free_map(t_map *map)
 	free(map);
 }
 
-static int	cnt_nbrs(t_map *map, char *line, char *file)
-{
-	int		cnt;
-	char	**split;
-
-	if (!line)
-	{
-		free_map(map);
-		err_exit(file, "is an empty map");
-	}
-	split = ft_split(line, ' ');
-	if (!split)
-	{
-		free_map(map);
-		err_exit("Error", MAL_ERROR);
-	}
-	cnt = 0;
-	while (split[cnt])
-		cnt++;
-	free_split(split);
-	return (cnt);
-}
-
 void	alloc_map(t_map *map)
 {
 	int	i;
@@ -91,6 +87,29 @@ void	alloc_map(t_map *map)
 			err_exit("Error", MAL_ERROR);
 		}
 	}
+}
+
+static int	cnt_nbrs(t_map *map, char *line, char *file)
+{
+	int		cnt;
+	char	**split;
+
+	if (!line)
+	{
+		free_map(map);
+		err_exit(file, "is an empty map");
+	}
+	split = ft_split(line, ' ');
+	if (!split)
+	{
+		free_map(map);
+		err_exit("Error", MAL_ERROR);
+	}
+	cnt = 0;
+	while (split[cnt])
+		cnt++;
+	free_split(split);
+	return (cnt);
 }
 
 t_map	*initialise_map(char *file)
