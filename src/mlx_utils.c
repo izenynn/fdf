@@ -26,7 +26,6 @@ void	reset_vars(t_vars *vars)
 	vars->zoom = ft_max((WIN_W / vars->map->w / 2), (WIN_H / vars->map->h / 2));
 	vars->shift_x = WIN_W / 2;
 	vars->shift_y = (WIN_H - vars->map->h * vars->zoom) / 2;
-	vars->rot = 0.8;
 	vars->iso = 1;
 	vars->flat = 1;
 	vars->rot_x = 0;

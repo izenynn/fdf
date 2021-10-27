@@ -126,7 +126,6 @@ typedef struct s_vars
 	t_img	*img;
 	int		shift_x;
 	int		shift_y;
-	float	rot;
 	float	zoom;
 	int		iso;
 	float	flat;
