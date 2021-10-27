@@ -49,6 +49,19 @@ make
 ./fdf ./test_map/42.fdf
 ```
 
+### If the program is closing instantly
+
+There is a bug with the minilibx version for linux, sometimes it does ghosting of the ESC key, so it exists the program, the solution? Comment the lines that exit when ESC key is pressed.
+
+Go to `src/mlx_hook.c` and comment line 25 and 26:
+
+```c
+//if (keycode == KEY_ESC)
+//	close_win(vars);
+```
+
+You will stil be able to exit either closing the window or by pressing CTRL + C on the terminal.
+
 ### MAC OS alternative version
 
 If you have any issues on MAC OS, an alternative minilibx is included in the repo, just uncomment the lines 98 and 99, and comment lines 101 and 102 of the `Makefile` :)
