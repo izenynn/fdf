@@ -102,6 +102,24 @@ ifeq ($(UNAME_S),Darwin)
 endif
 ```
 
+## Useful links
+
+Minilibx documentation:
+
+- [documentation (by [qst0](https://github.com/qst0))](https://qst0.github.io/ft_libgfx/man_mlx.html)
+
+- [documentation and guide (by [harm-smits](https://github.com/harm-smits))](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html)
+
+- [minilibx images guide (by [Gontjarow](https://github.com/Gontjarow))](https://gontjarow.github.io/MiniLibX/mlx-tutorial-create-image.html)
+
+- [minilibx images examples (by [keuhdall](https://github.com/keuhdall))](https://github.com/keuhdall/images_example)
+
+- [fdf wiki (by [VBrazhnik](https://github.com/VBrazhnik/FdF/wiki))](https://github.com/VBrazhnik/FdF/wiki)
+
+Minilibx for linux:
+
+- [minilibx for linux](https://github.com/42Paris/minilibx-linux)
+
 ##
 [![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)](https://forthebadge.com)
