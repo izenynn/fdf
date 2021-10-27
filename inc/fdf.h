@@ -49,7 +49,6 @@
 #  define KEY_S 1
 #  define KEY_A 0
 #  define KEY_D 2
-#  define KEY_I 34
 #  define KEY_P 35
 #  define KEY_MINUS 27
 #  define KEY_PLUS 24
@@ -70,17 +69,16 @@
 #  define KEY_S 115
 #  define KEY_A 97
 #  define KEY_D 100
-//#  define KEY_I ?
-//#  define KEY_P ?
-//#  define KEY_MINUS ?
-//#  define KEY_PLUS ?
-//#  define KEY_R ?
-//#  define KEY_U ?
-//#  define KEY_J ?
-//#  define KEY_I ?
-//#  define KEY_K ?
-//#  define KEY_O ?
-//#  define KEY_L ?
+#  define KEY_P 112
+#  define KEY_MINUS 45
+#  define KEY_PLUS 61
+#  define KEY_R 114
+#  define KEY_U 117
+#  define KEY_J 106
+#  define KEY_I 105
+#  define KEY_K 107
+#  define KEY_O 111
+#  define KEY_L 108
 # endif
 
 // structs
