@@ -62,23 +62,24 @@ static void	bresenham(t_vars *vars, t_point start, t_point end)
 	t_point	cur;
 	t_point	sign;
 	t_point	delta;
-	int		line[2];
+	int		line;
+	int		tmp;
 
 	initialise_bresenham(&start, &end, &delta, &sign);
-	line[0] = delta.x - delta.y;
+	line = delta.x - delta.y;
 	cur = start;
 	while (cur.x != end.x || cur.y != end.y)
 	{
 		img_pixel_put(vars, cur.x, cur.y, get_color(cur, start, end, delta));
-		line[1] = line[0] * 2;
-		if (line[1] > -delta.y)
+		tmp = line * 2;
+		if (tmp > -delta.y)
 		{
-			line[0] -= delta.y;
+			line -= delta.y;
 			cur.x += sign.x;
 		}
-		if (line[1] < delta.x)
+		if (tmp < delta.x)
 		{
-			line[0] += delta.x;
+			line += delta.x;
 			cur.y += sign.y;
 		}
 	}
