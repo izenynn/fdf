@@ -77,7 +77,7 @@ You will stil be able to exit either closing the window or by pressing CTRL + C 
 
 ## MAC OS alternative version
 
-If you have any issues on MAC OS, an alternative minilibx is included in the repo, just uncomment the lines 98 and 99, and comment lines 101 and 102 of the `Makefile` :)
+If you have any issues on MAC OS, an alternative minilibx is included in the repo, just uncomment the lines 108 and 109, and comment lines 111 and 112 of the `Makefile` :)
 
 - Before
 
