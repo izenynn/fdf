@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 21:05:31 by dpoveda-          #+#    #+#             */
-/*   Updated: 2021/10/26 21:05:32 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:33:26 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ int	get_z_color(t_vars *vars, int cur_z)
 
 	percentage = percent(vars->map->min_z, vars->map->max_z, cur_z);
 	if (percentage < 0.2)
-		return (0x581845);
+		return (COLOR_1);
 	else if (percentage < 0.4)
-		return (0x900c3f);
+		return (COLOR_2);
 	else if (percentage < 0.6)
-		return (0xc70039);
+		return (COLOR_3);
 	else if (percentage < 0.8)
-		return (0xff5733);
+		return (COLOR_4);
 	else
-		return (0xffc30f);
+		return (COLOR_5);
 }

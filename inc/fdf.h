@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 13:17:17 by dpoveda-          #+#    #+#             */
-/*   Updated: 2021/10/20 13:17:18 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:35:19 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,22 @@
 # define LHEX "0123456789abcdef"
 
 # define WHITE 0xFFFFFF
+
+# ifndef COLOR_1
+#  define COLOR_1 0x581845
+# endif
+# ifndef COLOR_2
+#  define COLOR_2 0x900C3F
+# endif
+# ifndef COLOR_3
+#  define COLOR_3 0xC70039
+# endif
+# ifndef COLOR_4
+#  define COLOR_4 0xFF5733
+# endif
+# ifndef COLOR_5
+#  define COLOR_5 0xFFC30F
+# endif
 
 # ifdef OSX
 #  define KEY_ESC 53
