@@ -8,18 +8,6 @@ Wireframe rasterizer.
 - Result: n/a
 - Observations: you can zoom, translate (move) and rotate the wireframe :D
 
-## Screenshots
-
-![map elem2.fdf screenshot](https://github.com/izenynn/fdf/blob/main/screenshots/01-elem2.png)
-
-![map t2.fdf screenshot](https://github.com/izenynn/fdf/blob/main/screenshots/02-t2.png)
-
-![map elem-col.fdf screenshot](https://github.com/izenynn/fdf/blob/main/screenshots/03-elem-col.png)
-
-![map julia.fdf screenshot](https://github.com/izenynn/fdf/blob/main/screenshots/04-julia.png)
-
-![map elem-fract.fdf screenshot](https://github.com/izenynn/fdf/blob/main/screenshots/05-elem-fract.png)
-
 # How to use
 
 ## Clone repo and submodules
@@ -124,6 +112,18 @@ ifeq ($(UNAME_S),Darwin)
 #	LMLX_DIR = $(LMLX_DIR_MACOS_SIERRA)
 endif
 ```
+
+## Screenshots
+
+![map elem2.fdf screenshot](https://github.com/izenynn/fdf/blob/main/screenshots/01-elem2.png)
+
+![map t2.fdf screenshot](https://github.com/izenynn/fdf/blob/main/screenshots/02-t2.png)
+
+![map elem-col.fdf screenshot](https://github.com/izenynn/fdf/blob/main/screenshots/03-elem-col.png)
+
+![map julia.fdf screenshot](https://github.com/izenynn/fdf/blob/main/screenshots/04-julia.png)
+
+![map elem-fract.fdf screenshot](https://github.com/izenynn/fdf/blob/main/screenshots/05-elem-fract.png)
 
 # Useful links
 
