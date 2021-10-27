@@ -46,6 +46,18 @@ Open the `Makefile`, go to line 40 and change WIN_H value to you desire windows 
 CCFLAGS += -D WIN_H=1080 -D WIN_W=1920
 ```
 
+## Change color palette
+
+A custom palette will be aplied when no colors are present on the map, the color will depend on the z axis, to change this palette, uncomment line 57 - 61 in the `Makefile` and change the color values, example:
+
+```make
+DCOLORS =	-D COLOR_1=0x00a0b0		\
+			-D COLOR_2=0x4f372d		\
+			-D COLOR_3=0xcc2a36		\
+			-D COLOR_4=0xeb6841		\
+			-D COLOR_5=0xedc95
+```
+
 ## Compile
 
 - Just run `make`

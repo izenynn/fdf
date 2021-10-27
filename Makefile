@@ -6,7 +6,7 @@
 #    By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 09:32:32 by dpoveda-          #+#    #+#              #
-#    Updated: 2021/10/27 16:43:39 by dpoveda-         ###   ########.fr        #
+#    Updated: 2021/10/27 16:54:01 by dpoveda-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,11 +54,11 @@ CFLAGS += -I ./$(LFT_DIR)/inc -I ./$(LMLX_DIR) -I ./inc
 LDFLAGS = -L ./
 
 # FDF COLORS
-#DCOLORS =	-D COLOR_1=0x445566		\
-#			-D COLOR_2=0x665544		\
-#			-D COLOR_3=0x119911		\
-#			-D COLOR_4=0x882211		\
-#			-D COLOR_5=0xffccff
+#DCOLORS =	-D COLOR_1=0x00a0b0		\
+#			-D COLOR_2=0x4f372d		\
+#			-D COLOR_3=0xcc2a36		\
+#			-D COLOR_4=0xeb6841		\
+#			-D COLOR_5=0xedc951
 
 CFLAGS += $(DCOLORS)
 CCFLAGS += $(DCOLORS)
