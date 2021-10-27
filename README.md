@@ -117,7 +117,7 @@ endif
 
 ### Minilibx documentation:
 
-- [documentation](https://qst0.github.io/ft_libgfx/man_mlx.html) (by [qst0](https://github.com/qst0))]
+- [documentation](https://qst0.github.io/ft_libgfx/man_mlx.html) (by [qst0](https://github.com/qst0))
 
 - [documentation and guide](https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html) (by [harm-smits](https://github.com/harm-smits))
 
