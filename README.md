@@ -51,7 +51,9 @@ make
 
 ### If the program is closing instantly
 
-There is a bug with the minilibx version for linux, sometimes it does ghosting of the ESC key, so it exists the program, the solution? Comment the lines that exit when ESC key is pressed.
+I do not know for sure if this bug is related with minilibx, linux, or wsl (I do not test it in native Linux).
+
+Sometimes the program do ghosting of the ESC key on start, so it exists the program instantly, to fix this comment the lines that close the program when ESC key is pressed.
 
 Go to `src/mlx_hook.c` and comment line 25 and 26:
 
