@@ -60,7 +60,7 @@ DCOLORS =   -D COLOR_1=0x00a0b0     \
 
 ## Compile
 
-- Run `make`
+- Run `make` (make rules: `all`, `clean`, `fclean` and `re`)
 
 ```sh
 make all clean
