@@ -60,10 +60,10 @@ DCOLORS =   -D COLOR_1=0x00a0b0     \
 
 ## Compile
 
-- Just run `make`
+- Run `make`
 
 ```sh
-make
+make all clean
 ```
 
 - Run `./fdf` with a map as an argument (test maps on the `test_maps` folder)
