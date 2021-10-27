@@ -5,7 +5,7 @@
 Wireframe rasterizer.
 
 - Status: finished
-- Result: n/a
+- Result: 125%
 - Observations: you can zoom, translate (move) and rotate the wireframe :D
 
 # How to use
