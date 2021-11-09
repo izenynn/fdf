@@ -16,12 +16,18 @@ Wireframe rasterizer.
 git clone --recurse-submodules https://github.com/izenynn/fdf.git
 ```
 
-## Dependencies (Linux)
+## Linux only extra steps
 
-- If you are using Linux, firts you will need to install a few packages
+- If you are using Linux, firts you will need to install a few dependencies
 
 ```sh
 sudo apt-get update && sudo apt-get install xorg libxext-dev zlib1g-dev libbsd-dev
+```
+
+- Also, give execution permissions to the file `./lib/mlx_linux/configure`
+
+```sh
+chmod +x ./lib/mlx_linux/configure
 ```
 
 ## Change window resolution
