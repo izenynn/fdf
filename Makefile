@@ -6,7 +6,7 @@
 #    By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/22 09:32:32 by dpoveda-          #+#    #+#              #
-#    Updated: 2021/10/27 16:54:01 by dpoveda-         ###   ########.fr        #
+#    Updated: 2021/11/21 21:38:35 by dpoveda-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,7 @@ LFT = $(LFT_DIR)/$(LFT_NAME)
 LMLX = $(LMLX_DIR)/$(LMLX_NAME)
 
 # PATHS
+INC_PATH = inc
 SRC_PATH = src
 OBJ_PATH = obj
 LIB_PATH = lib
@@ -151,5 +152,6 @@ norm:
 	@printf "\n${GRN}LIBFT:${BLU}\n\n"
 	@norminette $(LFT_DIR)
 	@printf "\n${GRN}FDF:${BLU}\n\n"
+	@norminette $(INC_PATH)
 	@norminette $(SRC_PATH)
 	@printf "${NOCOL}"

@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 13:17:17 by dpoveda-          #+#    #+#             */
-/*   Updated: 2021/10/27 16:35:19 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2021/11/21 21:37:49 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,27 @@
 #  define KEY_O 31
 #  define KEY_L 37
 # elif LINUX
+#  define KEY_ESC 65307
+#  define KEY_UP 65362
+#  define KEY_DOWN 65364
+#  define KEY_LEFT 65361
+#  define KEY_RIGHT 65363
+#  define KEY_W 119
+#  define KEY_S 115
+#  define KEY_A 97
+#  define KEY_D 100
+#  define KEY_P 112
+#  define KEY_MINUS 45
+#  define KEY_PLUS 61
+#  define KEY_R 114
+#  define KEY_U 117
+#  define KEY_J 106
+#  define KEY_I 105
+#  define KEY_K 107
+#  define KEY_O 111
+#  define KEY_L 108
+# else
+#  define LINUX
 #  define KEY_ESC 65307
 #  define KEY_UP 65362
 #  define KEY_DOWN 65364
@@ -194,7 +215,7 @@ void	handle_rot(int keycode, t_vars *vars);
 void	handle_flattening(int keycode, t_vars *vars);
 
 // color.c
-int	get_color(t_point current, t_point start, t_point end, t_point delta);
-int	get_z_color(t_vars *vars, int cur_z);
+int		get_color(t_point current, t_point start, t_point end, t_point delta);
+int		get_z_color(t_vars *vars, int cur_z);
 
 #endif
