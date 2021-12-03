@@ -6,7 +6,7 @@
 /*   By: dpoveda- <me@izenynn.com>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 21:08:59 by dpoveda-          #+#    #+#             */
-/*   Updated: 2021/10/20 21:09:00 by dpoveda-         ###   ########.fr       */
+/*   Updated: 2021/12/03 02:32:53 by dpoveda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <libft/ft_fd.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 void	get_min_max_z(t_map *map)
 {
@@ -128,15 +129,11 @@ t_map	*initialise_map(char *file)
 	map->w = cnt_nbrs(map, line, file);
 	while (line)
 	{
-		if (cnt_nbrs(map, line, file) != map->w && map->w != 0)
-		{
-			free_map(map);
-			err_exit(file, "is not a valid map");
-		}
 		map->h++;
 		free(line);
 		line = ft_get_next_line(fd);
 	}
 	free(line);
+	close(fd);
 	return (map);
 }
